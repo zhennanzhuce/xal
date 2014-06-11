@@ -11,18 +11,18 @@
 		<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
 		<!--[if lte IE 9]>
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/bsie/0.0.0/css/bootstrap-ie6.css">
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/bsie/0.0.0/css/ie.css">
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/bsie/0.0.0/css/bootstrap-ie6.css">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/bsie/0.0.0/css/ie.css">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
 		<![endif]-->
 
 		<!--[if lte IE 7]>
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
 		<![endif]-->
 
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.css?v3.0.3" media="screen">
-		<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css?v3.0.3" media="screen">
-	    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8082/cdn/js/bootstrap-datetimepicker/2.2.0/css/bootstrap-datetimepicker.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.css?v3.0.3" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css?v3.0.3" media="screen">
+	    <link rel="stylesheet" type="text/css" href="http://192.168.88.104:8082/cdn/js/bootstrap-datetimepicker/2.2.0/css/bootstrap-datetimepicker.min.css" media="screen">
 		<style>
 			body {
 				margin-top: 10px;
@@ -195,7 +195,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="addFrm_byyx" class="col-sm-2 control-label">毕业院校</label>
+									<label for="addFrm_byyx" class="col-sm-2 control-label"><span class="olx-form-required">*</span>毕业院校</label>
 									<div class="col-sm-4">
 										<input type="text" class="form-control" id="addFrm_byyx" name="byyx" placeholder="毕业院校">
 									</div>
@@ -281,13 +281,13 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/jquery/2.0.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/jquery/ext/ext.form.js"></script>
-        <script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/underscore/1.5.1/underscore.min.js"></script>
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/olxjs/1.0.0/js/olx.min.js?v12"></script>
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/jquery/ext/ext.form.js"></script>
+        <script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/underscore/1.5.1/underscore.min.js"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/olxjs/1.0.0/js/olx.min.js?v12"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="http://192.168.88.104:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="addFrm.js"></script>
 		<script type="text/javascript">
 			$('.form_date').datetimepicker({
@@ -300,6 +300,15 @@
 				minView: 2,
 				forceParse: 0
 			});
+			$(function(){
+				var xm = $.fn.olxQueryString('xm');
+				if(0 === xm.length) return location.href = 'step0.html';
+				var sfzh = $.fn.olxQueryString('sfzh');
+				if(0 === sfzh.length) return location.href = 'step0.html';
+				$('#addFrm_xm').val(decodeURI(xm));
+				$('#addFrm_sfzh').val(sfzh);
+			});
+
 			$('#btn_submit').click(function(){
 				$('#addFrm').olxForm('submit', [valiAddFrm, function (valiResu){
 					if('string' === typeof valiResu){
