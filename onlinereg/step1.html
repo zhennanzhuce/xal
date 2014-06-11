@@ -30,6 +30,9 @@
 			.container {
 				width: 1000px;
 			}
+			.olx-form-required {
+				color: red;
+			}
 		</style>
 	</head>
 	<body>
@@ -40,13 +43,13 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"><b>《职业卫生安全评价，从入门到精通》网上报名</b></div>
 						<div class="panel-body">					
-							<form class="form-horizontal" role="form">
+							<form id="addFrm" class="form-horizontal" role="form" data-url="reg.do">
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+									<label for="addFrm_xm" class="col-sm-2 control-label"><span class="olx-form-required">*</span>姓名</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="姓名">
+										<input type="text" class="form-control" id="addFrm_xm" name="xm" placeholder="姓名">
 									</div>
-									<label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+									<label for="addFrm_xb" class="col-sm-2 control-label">性别</label>
 									<div class="col-sm-4">
 										<!--div class="radio radio-inline">
 											<label>
@@ -58,41 +61,41 @@
 												<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">女
 											</label>
 										</div-->										
-										<select class="form-control">
-											<option value="01">男</option>
-											<option value="02">女</option>
+										<select class="form-control" id="addFrm_xb" name="xb">
+											<option value="男">男</option>
+											<option value="女">女</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">身份证号</label>
+									<label for="addFrm_sfzh" class="col-sm-2 control-label"><span class="olx-form-required">*</span>身份证号</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="身份证号">
+										<input type="text" class="form-control" id="addFrm_sfzh" name='sfzh' placeholder="身份证号">
 									</div>
-									<label for="inputPassword3" class="col-sm-2 control-label">政治面貌</label>
+									<label for="addFrm_zzmm" class="col-sm-2 control-label">政治面貌</label>
 									<div class="col-sm-4">
-										<select class="form-control">
-											<option value="01">中共党员</option>
-											<option value="02">中共预备党员</option>
-											<option value="03">共青团员</option>
-											<option value="04">民革党员</option>
-											<option value="05">民盟盟员</option>
-											<option value="06">民建会员</option>
-											<option value="07">民进会员</option>
-											<option value="08">农工党党员</option>
-											<option value="09">致公党党员</option>
-											<option value="10">九三学社社员</option>
-											<option value="11">台盟盟员</option>
-											<option value="12">无党派人士</option>
-											<option value="13">群众（现称普通公民）</option>
-											<option value="14">港澳同胞</option>
+										<select class="form-control" id="addFrm_zzmm" name="zzmm">
+											<option value="中共党员">中共党员</option>
+											<option value="中共预备党员">中共预备党员</option>
+											<option value="共青团员">共青团员</option>
+											<option value="民革党员">民革党员</option>
+											<option value="民盟盟员">民盟盟员</option>
+											<option value="民建会员">民建会员</option>
+											<option value="民进会员">民进会员</option>
+											<option value="农工党党员">农工党党员</option>
+											<option value="致公党党员">致公党党员</option>
+											<option value="九三学社社员">九三学社社员</option>
+											<option value="台盟盟员">台盟盟员</option>
+											<option value="无党派人士">无党派人士</option>
+											<option value="群众（现称普通公民）">群众（现称普通公民）</option>
+											<option value="港澳同胞">港澳同胞</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">民族</label>
+									<label for="addFrm_mz" class="col-sm-2 control-label">民族</label>
 									<div class="col-sm-4">
-										<select class="form-control">
+										<select class="form-control" id="addFrm_mz" name="mz">
 											<option value="汉族">汉族</option>
 											<option value="蒙古族">蒙古族</option>
 											<option value="彝族">彝族</option>
@@ -151,9 +154,9 @@
 											<option value="基诺族">基诺族</option>
 										</select>
 									</div>
-									<label for="inputPassword3" class="col-sm-2 control-label">籍贯</label>
+									<label for="addFrm_jg" class="col-sm-2 control-label">籍贯</label>
 									<div class="col-sm-4">
-										<select class="form-control">
+										<select class="form-control" id="addFrm_jg" name="jg">
 											<option value="111">北京</option>
 											<option value="112">天津</option>
 											<option value="113">河北</option>
@@ -192,24 +195,24 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">毕业院校</label>
+									<label for="addFrm_byyx" class="col-sm-2 control-label">毕业院校</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="毕业院校">
+										<input type="text" class="form-control" id="addFrm_byyx" name="byyx" placeholder="毕业院校">
 									</div>
-									<label for="inputPassword3" class="col-sm-2 control-label">毕业时间</label>
+									<label for="addFrm_shadow_bysj" class="col-sm-2 control-label">毕业时间</label>
 									<div class="col-sm-4">
-										<div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy-mm-dd" data-link-field="addFrm_CreateTime" data-link-format="yyyy-mm-dd">
-										<input class="form-control" id='addFrm_shadow_CreateTime' type="text" value="" readonly placeholder="毕业时间">
-										<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-									</div>
-									<input type="hidden" data-olx-type="olx.form.input" class="form-control" id="addFrm_CreateTime" name="CreateTime" placeholder="毕业时间">
+										<div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy-mm-dd" data-link-field="addFrm_bysj" data-link-format="yyyy-mm-dd">
+											<input class="form-control" id='addFrm_shadow_bysj' type="text" value="" readonly placeholder="毕业时间">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+										</div>
+										<input type="hidden" data-olx-type="olx.form.input" class="form-control" id="addFrm_bysj" name="bysj" placeholder="毕业时间">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">学历</label>
+									<label for="addFrm_xl" class="col-sm-2 control-label">学历</label>
 									<div class="col-sm-4">
-										<select class="form-control">
+										<select class="form-control" id="addFrm_xl" name='xl'>
 											<option value="5">大专</option>
 											<option value="4" selected>本科</option>
 											<option value="3">硕士</option>
@@ -223,51 +226,51 @@
 											<option value="8">其他</option>
 										</select>
 									</div>
-									<label for="inputEmail3" class="col-sm-2 control-label">专业</label>
+									<label for="addFrm_zy" class="col-sm-2 control-label">专业</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="专业">
+										<input type="text" class="form-control" id="addFrm_zy" name="zy" placeholder="专业">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">工作单位</label>
+									<label for="addFrm_gzdw" class="col-sm-2 control-label">工作单位</label>
 									<div class="col-sm-4">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="工作单位">
+										<input type="password" class="form-control" id="addFrm_gzdw" name="gzdw" placeholder="工作单位">
 									</div>
-									<label for="inputEmail3" class="col-sm-2 control-label">所在部门</label>
+									<label for="addFrm_szbm" class="col-sm-2 control-label">所在部门</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="所在部门">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">从事专业</label>
-									<div class="col-sm-4">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="从事专业">
-									</div>
-									<label for="inputEmail3" class="col-sm-2 control-label">职位</label>
-									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="职位">
+										<input type="text" class="form-control" id="addFrm_szbm" name="szbm" placeholder="所在部门">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">职称</label>
+									<label for="addFrm_cszy" class="col-sm-2 control-label">从事专业</label>
 									<div class="col-sm-4">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="职称">
+										<input type="password" class="form-control" id="addFrm_cszy" name="cszy" placeholder="从事专业">
 									</div>
-									<label for="inputEmail3" class="col-sm-2 control-label">联系电话</label>
+									<label for="addFrm_zw" class="col-sm-2 control-label">职位</label>
 									<div class="col-sm-4">
-										<input type="email" class="form-control" id="inputEmail3" placeholder="联系电话">
+										<input type="text" class="form-control" id="addFrm_zw" name="zw" placeholder="职位">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword3" class="col-sm-2 control-label">联系地址</label>
+									<label for="addFrm_zc" class="col-sm-2 control-label">职称</label>
+									<div class="col-sm-4">
+										<input type="password" class="form-control" id="addFrm_zc" name="zc" placeholder="职称">
+									</div>
+									<label for="addFrm_lxdh" class="col-sm-2 control-label">联系电话</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="addFrm_lxdh" name="lxdh" placeholder="联系电话">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="addFrm_lxdz" class="col-sm-2 control-label">联系地址</label>
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="inputPassword3" placeholder="联系地址">
+										<input type="password" class="form-control" id="addFrm_lxdz" name="lxdz" placeholder="联系地址">
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-primary">提交</button>
+										<button type="button" class="btn btn-primary" id="btn_submit">提交</button>
 										<button type="reset" class="btn btn-default">重置</button>
 									</div>
 								</div>
@@ -280,10 +283,12 @@
 
 		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/jquery/2.0.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/jquery/ext/ext.form.js"></script>
         <script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/underscore/1.5.1/underscore.min.js"></script>
 		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/olxjs/1.0.0/js/olx.min.js?v12"></script>
 		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="http://127.0.0.1:8082/cdn/js/bootstrap-datetimepicker/2.2.0/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="addFrm.js"></script>
 		<script type="text/javascript">
 			$('.form_date').datetimepicker({
 				language: 'zh-CN',
@@ -294,6 +299,16 @@
 				startView: 2,
 				minView: 2,
 				forceParse: 0
+			});
+			$('#btn_submit').click(function(){
+				$('#addFrm').olxForm('submit', [valiAddFrm, function (valiResu){
+					if('string' === typeof valiResu){
+						return alert(valiResu);
+					}
+					$('#addFrm_'+ valiResu[1]).olxFormInput('validate', valiResu);
+				}, function (data){
+					console.log(data)
+				}]);
 			});
 		</script>
 	</body>
