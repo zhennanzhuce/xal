@@ -1,0 +1,37 @@
+<mockup version="1.0" skin="sketch" measuredW="1082" measuredH="631" mockupW="1082" mockupH="631">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1082" h="631" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u7528%u6237%u6CE8%u518C%0Ahttp%3A//localhost/user/register</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TitleWindow" x="287" y="132" w="-1" h="-1" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <maximizeRestore>false</maximizeRestore>
+        <minimize>false</minimize>
+        <text>Window%20Name</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="348" y="198" w="-1" h="-1" measuredW="70" measuredH="22" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u771F%u5B9E%u59D3%u540D%uFF1A</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="348" y="220" w="-1" h="-1" measuredW="70" measuredH="22" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u8EAB%u4EFD%u8BC1%u53F7%uFF1A</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="348" y="242" w="-1" h="-1" measuredW="70" measuredH="22" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u767B%u9646%u5BC6%u7801%uFF1A</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="348" y="264" w="-1" h="-1" measuredW="70" measuredH="22" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u786E%u8BA4%u5BC6%u7801%uFF1A</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
