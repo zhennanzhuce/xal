@@ -4,6 +4,15 @@ public class User {
 	private String id;
 	private String userName;
 	private String userPass;
+	private String realName;
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
 	public String getId() {
 		return id;
