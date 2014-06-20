@@ -213,3 +213,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+onlinereg/v2.0/code/sign-up/target/classes/
+onlinereg/v2.0/code/sign-up/target/test-classes/
