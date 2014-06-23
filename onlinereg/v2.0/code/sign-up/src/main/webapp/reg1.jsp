@@ -54,6 +54,10 @@ body {
 .olx-form-required {
 	color: red;
 }
+
+#costItem {
+	font-size: 12px;
+}
 </style>
 </head>
 <body>
@@ -69,22 +73,26 @@ body {
 						<form id="addFrm" class="form-horizontal" role="form"
 							data-url="reg.do">
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label">用户名</label>
+								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>用户名</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control" id="addFrm_zc"
 										name="zc" placeholder="用户名">
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-2">
 									<button type="button" class="btn btn-primary">检测用户名</button>
 								</div>
+								<div class="col-sm-4"></div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label">登陆密码</label>
+								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>登陆密码</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control" id="addFrm_zc"
 										name="zc" placeholder="登陆密码">
 								</div>
-								<label for="addFrm_lxdh" class="col-sm-2 control-label">确认密码</label>
+								<label for="addFrm_lxdh" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>确认密码</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_lxdh"
 										name="lxdh" placeholder="确认密码">
@@ -253,7 +261,8 @@ body {
 									<input type="text" class="form-control" id="addFrm_byyx"
 										name="byyx" placeholder="毕业院校">
 								</div>
-								<label for="addFrm_shadow_bysj" class="col-sm-2 control-label">毕业时间</label>
+								<label for="addFrm_shadow_bysj" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>毕业时间</label>
 								<div class="col-sm-4">
 									<div class="input-group date form_date col-md-12" data-date=""
 										data-date-format="yyyy-mm-dd" data-link-field="addFrm_bysj"
@@ -287,26 +296,30 @@ body {
 										<option value="8">其他</option>
 									</select>
 								</div>
-								<label for="addFrm_zy" class="col-sm-2 control-label">专业</label>
+								<label for="addFrm_zy" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>专业</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_zy"
 										name="zy" placeholder="专业">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_gzdw" class="col-sm-2 control-label">工作单位</label>
+								<label for="addFrm_gzdw" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>工作单位</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control" id="addFrm_gzdw"
 										name="gzdw" placeholder="工作单位">
 								</div>
-								<label for="addFrm_szbm" class="col-sm-2 control-label">所在部门</label>
+								<label for="addFrm_szbm" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>所在部门</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_szbm"
 										name="szbm" placeholder="所在部门">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_cszy" class="col-sm-2 control-label">从事专业</label>
+								<label for="addFrm_cszy" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>从事专业</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control" id="addFrm_cszy"
 										name="cszy" placeholder="从事专业">
@@ -318,12 +331,14 @@ body {
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label">职称</label>
+								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>职称</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control" id="addFrm_zc"
 										name="zc" placeholder="职称">
 								</div>
-								<label for="addFrm_lxdh" class="col-sm-2 control-label">联系电话</label>
+								<label for="addFrm_lxdh" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>联系电话</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_lxdh"
 										name="lxdh" placeholder="联系电话">
@@ -342,7 +357,7 @@ body {
 							<div class="form-group">
 								<label class="col-sm-2 control-label">项目选择</label>
 								<div class="col-sm-10">
-									<table class="table table-bordered">
+									<table class="table table-bordered" id='costItem'>
 										<thead>
 											<tr>
 												<th>编号</th>
@@ -365,7 +380,7 @@ body {
 													value='<%=item.getId() %>'></td>
 												<td><%=item.getItemName() %></td>
 												<td><%=item.getDayNum() %></td>
-												<td><%=item.getCost() %></td>
+												<td><%=item.getCost() %> <%=item.getCostUnit() %></td>
 												<td title='<%=item.getComment2() %>'><%=item.getComment() %></td>
 											</tr>
 											<%

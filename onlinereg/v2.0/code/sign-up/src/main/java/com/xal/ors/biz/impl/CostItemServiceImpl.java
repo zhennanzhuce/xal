@@ -25,8 +25,8 @@ public class CostItemServiceImpl implements CostItemService {
 	}
 
 	public boolean saveNew(CostItem costItem) {
-		String sql = "insert into t_costitem (itemname, daynum, cost,costUnit, comment, comment2) "
-				+ "values(?, ?, ?, ?)";
+		String sql = "insert into t_costitem (itemname, daynum, cost, costUnit, comment, comment2) "
+				+ "values(?, ?, ?, ?, ?, ?)";
 		Object[] obj = { costItem.getItemName(), costItem.getDayNum(),
 				costItem.getCost(), costItem.getCostUnit(),
 				costItem.getComment(), costItem.getComment2() };
