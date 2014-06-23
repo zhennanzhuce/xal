@@ -98,6 +98,17 @@ public class UserServiceImpl implements UserService {
 				+ sbStr.substring(0, sbStr.length() - 1) + ")";
 		return optTemplate.update(sql, obj, false);
 	}
+
+	@SuppressWarnings("unchecked")
+	public boolean isExist(String userName) {
+		String sql = "select * from s_user where userName=?";
+		Object[] obj = { userName };
+
+		List<User> users = (List<User>) optTemplate.query(sql, obj,
+				new UserDAOObjectMapper());
+
+		return (null != users && 1 == users.size());
+	}
 }
 
 class UserDAOObjectMapper implements ObjectMapper {

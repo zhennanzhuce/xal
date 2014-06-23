@@ -18,4 +18,12 @@ public interface UserService {
 	boolean removeItem(Integer id);
 
 	boolean passUser(Integer[] ids);
+
+	/**
+	 * 监测用户名是否存在
+	 *
+	 * @param userName
+	 * @return
+	 */
+	boolean isExist(String userName);
 }
