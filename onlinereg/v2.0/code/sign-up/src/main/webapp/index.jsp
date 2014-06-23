@@ -3,63 +3,139 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>用户登陆</title>
+<title>《职业卫生安全评价，从入门到精通》网上报名</title>
+<meta charset="utf-8">
+<meta name="robots" content="all" />
+<meta name="author" content="3203317@qq.com,新" />
+<meta name="generator" content="Foreworld" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+<!--[if lte IE 9]>
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/bootstrap-ie6.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/ie.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
+		<![endif]-->
+
+<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/js/verybsie/1.0.0/css/bootstrap-verybsie.css">
+		<![endif]-->
+
+<link rel="stylesheet" type="text/css"
+	href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.css?v3.0.3"
+	media="screen">
+<link rel="stylesheet" type="text/css"
+	href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css?v3.0.3"
+	media="screen">
 <style>
-label.wrong{
+body {
+	background-color: #F5F5F5;
+	padding-bottom: 40px;
+	padding-top: 40px;
+}
+
+#logFrm {
+	background-color: #FFFFFF;
+	border: 1px solid #E5E5E5;
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	margin: 0 auto 20px;
+	max-width: 350px;
+	padding: 19px 29px 29px;
+}
+
+#alert_info {
+	max-width: 350px;
+	margin: 0 auto 20px;
+}
+
+#regFrm_ShowErr {
 	color: red;
-	display: none;
+	font-size: 12px;
+	font-weight: normal;
 }
 </style>
 </head>
 <body>
-<form id='logFrm' onsubmit="return false;">
-	<label for='logFrm_UserName'>用户名：</label><input type='text' id='logFrm_UserName' name='UserName'><br>
-	<label class='wrong' id='logFrm_UserName_Vali'></label><br>
-	<label for='logFrm_UserPass'>密码：</label><input type='password' id='logFrm_UserPass' name='UserPass'><br>
-	<label class='wrong' id='logFrm_UserPass_Vali'></label><br>
-	<input type="button" id='logFrm_btn_log' value='登陆'><input id='btn_regNew' type="button" value='新用户注册'>
-</form>
 
-<script type="text/javascript" src="/cdn/js/jquery/2.0.2/jquery.min.js?v2.0.2"></script>
-<script type="text/javascript" src="/cdn/js/jquery/ext/jquery.pin.js"></script>
-<script type="text/javascript" src="/cdn/js/jquery/ext/ext.form.js"></script>
-<script type="text/javascript" src="/cdn/js/underscore/1.5.1/underscore.min.js"></script>
-<script type="text/javascript" src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.min.js?v3.0.3"></script>
-<script type="text/javascript" src="/cdn/js/FlexSlider/2.2.2/jquery.flexslider-min.js" defer></script>
-<script>
-$(function(){
-});
+	<section class="container">
+	<form id="logFrm" role="form" onsubmit="return false;"
+		data-url="step0.do">
+		<h3>《职业卫生安全评价，从入门到精通》</h3>
+		<div class="form-group">
+			<input id="logFrm_UserName" name="UserName" type="text"
+				class="form-control" placeholder="姓名">
+		</div>
+		<div class="form-group">
+			<input id="logFrm_UserPass" name="UserPass" type="password"
+				class="form-control" placeholder="密码">
+		</div>
+		<button id="btn_submit" type="button" class="btn btn-primary">登陆</button>
+		<button id="btn_regNew" type="button" class="btn btn-default">注册</button>
+		<div class="form-group">
+			<label id="regFrm_ShowErr"></label>
+		</div>
+	</form>
+	</section>
 
-function valiFrm(){
-	var frmObj = $('#logFrm').serializeObjectForm();
-	$('form label[id$="_Vali"]').each(function (i, label){
-		$(label).css('display', 'none');
-	});
+	<script type="text/javascript"
+		src="/cdn/js/jquery/2.0.2/jquery.min.js?v2.0.2"></script>
+	<script type="text/javascript" src="/cdn/js/jquery/ext/jquery.pin.js"></script>
+	<script type="text/javascript" src="/cdn/js/jquery/ext/ext.form.js"></script>
+	<script type="text/javascript"
+		src="/cdn/js/underscore/1.5.1/underscore.min.js"></script>
+	<script type="text/javascript"
+		src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.min.js?v3.0.3"></script>
+	<script type="text/javascript"
+		src="/cdn/js/FlexSlider/2.2.2/jquery.flexslider-min.js" defer></script>
+	<script>
+		$(function() {
+		});
 
-	if(!frmObj.UserName.trim().length){
-		$('#logFrm_UserName_Vali').text('用户名不能为空');
-		$('#logFrm_UserName_Vali').css('display', 'block');
-		$('#logFrm_UserName').focus();
-		return;
-	}
-	if(!frmObj.UserPass.trim().length){
-		$('#logFrm_UserPass_Vali').text('密码不能为空');
-		$('#logFrm_UserPass_Vali').css('display', 'block');
-		$('#logFrm_UserPass').focus();
-		return;
-	}
-}
-function subFrm(){
-	var result = valiFrm();
-	if(!result) return;
-	console.log(121)
-}
-$('#logFrm_btn_log').click(subFrm);
+		function valiFrm() {
+			var frmObj = $('#logFrm').serializeObjectForm();
+			$('#regFrm_ShowErr').css('display', 'none');
 
-$('#btn_regNew').click(function(){
-	location.href = 'reg1.jsp';
-});
-</script>
+			if (!frmObj.UserName.trim().length) {
+				$('#regFrm_ShowErr').text('用户名不能为空');
+				$('#regFrm_ShowErr').css('display', 'block');
+				$('#logFrm_UserName').focus();
+				return;
+			}
+			if (!frmObj.UserPass.trim().length) {
+				$('#regFrm_ShowErr').text('密码不能为空');
+				$('#regFrm_ShowErr').css('display', 'block');
+				$('#logFrm_UserPass').focus();
+				return;
+			}
+			return true;
+		}
+		function subFrm() {
+			var result = valiFrm();
+			if (!result)
+				return;
+
+			$.ajax({
+				url : 'Reg1',
+				type : "POST",
+				dataType : "json"
+			}).done(function(data) {
+				if (!data.success) {
+					var msg = data.msg;
+					$('#regFrm_ShowErr').text(msg[0]);
+					$('#regFrm_ShowErr').css('display', 'block');
+					$('#logFrm_' + msg[1]).focus();
+					return;
+				}
+				console.log('my.jsp');
+			});
+		}
+		$('#btn_submit').click(subFrm);
+
+		$('#btn_regNew').click(function() {
+			location.href = 'reg1.jsp';
+		});
+	</script>
 </body>
 </html>
