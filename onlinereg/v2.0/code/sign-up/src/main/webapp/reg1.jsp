@@ -58,6 +58,12 @@ body {
 #costItem {
 	font-size: 12px;
 }
+
+#frm_ShowErr {
+	color: red;
+	font-size: 12px;
+	font-weight: normal;
+}
 </style>
 </head>
 <body>
@@ -355,7 +361,8 @@ body {
 							<div class="form-group"></div>
 							<div class="form-group"></div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">项目选择</label>
+								<label class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>项目选择</label>
 								<div class="col-sm-10">
 									<table class="table table-bordered" id='costItem'>
 										<thead>
@@ -364,7 +371,7 @@ body {
 												<th>可选项目</th>
 												<th>天数</th>
 												<th>费用</th>
-												<th>说明（点击简要说明可看相关详细介绍）</th>
+												<th>说明（鼠标悬停单元格可看相关详细介绍）</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -397,6 +404,10 @@ body {
 									<button type="reset" class="btn btn-default">重置</button>
 								</div>
 							</div>
+							<div class="form-group">
+								<label id="frm_ShowErr" class="col-sm-offset-2 col-sm-10">注意：提交前请再次确认带
+									* 的信息填写完整，若留空管理员将不会审核您的资料。</label>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -418,7 +429,6 @@ body {
 	<script type="text/javascript"
 		src="/cdn/js/bootstrap-datetimepicker/2.2.0/js/locales/bootstrap-datetimepicker.zh-CN.js"
 		charset="UTF-8"></script>
-	<script type="text/javascript" src="addFrm.js"></script>
 	<script type="text/javascript">
 		$('.form_date').datetimepicker({
 			language : 'zh-CN',

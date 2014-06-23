@@ -29,6 +29,15 @@ public class User {
 
 	private Date regtime;
 	private String costItem;
+	private Integer isPass;
+
+	public Integer getIsPass() {
+		return isPass;
+	}
+
+	public void setIsPass(Integer isPass) {
+		this.isPass = isPass;
+	}
 
 	public String getCostItem() {
 		return costItem;
