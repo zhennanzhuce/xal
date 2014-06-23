@@ -24,6 +24,37 @@ public class CostItemServiceImpl implements CostItemService {
 				new CostItemDAOObjectMapper());
 	}
 
+	public boolean saveNew(CostItem costItem) {
+		String sql = "insert into t_costitem (itemname, daynum, cost, comment) "
+				+ "values(?, ?, ?, ?)";
+		Object[] obj = { costItem.getItemName(), costItem.getDayNum(),
+				costItem.getCost(), costItem.getComment() };
+		return optTemplate.update(sql, obj, false);
+	}
+
+	public boolean editItem(CostItem costItem) {
+		String sql = "update t_costitem set itemname=?, daynum=?, cost=?, comment=? where id=?";
+		Object[] obj = { costItem.getItemName(), costItem.getDayNum(),
+				costItem.getCost(), costItem.getComment(), costItem.getId() };
+		return optTemplate.update(sql, obj, false);
+	}
+
+	public boolean removeItem(Integer id) {
+		String sql = "delete from t_costitem where id=?";
+		Object[] obj = { id };
+		return optTemplate.update(sql, obj, false);
+	}
+
+	public boolean removeItem(Integer[] ids) {
+		StringBuffer sbStr = new StringBuffer();
+		Integer[] obj = ids;
+		for (int i = 0; i < ids.length; i++) {
+			sbStr.append("?,");
+		}
+		String sql = "delete from t_costitem where id in("
+				+ sbStr.substring(0, sbStr.length() - 1) + ")";
+		return optTemplate.update(sql, obj, false);
+	}
 }
 
 class CostItemDAOObjectMapper implements ObjectMapper {
