@@ -16,4 +16,6 @@ public interface UserService {
 	boolean editItem(User user);
 
 	boolean removeItem(Integer id);
+
+	boolean passUser(Integer[] ids);
 }

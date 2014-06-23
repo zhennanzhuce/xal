@@ -53,7 +53,7 @@ public class CostItemServiceImpl implements CostItemService {
 		for (int i = 0; i < ids.length; i++) {
 			sbStr.append("?,");
 		}
-		String sql = "delete from t_costitem where id in("
+		String sql = "delete from t_costitem where id in ("
 				+ sbStr.substring(0, sbStr.length() - 1) + ")";
 		return optTemplate.update(sql, obj, false);
 	}
