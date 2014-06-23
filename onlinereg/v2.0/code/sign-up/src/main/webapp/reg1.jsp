@@ -1,3 +1,16 @@
+<%@page import="com.xal.ors.model.CostItem"%>
+<%@page import="java.util.List"%>
+<%@page import="com.xal.ors.biz.impl.CostItemServiceImpl"%>
+<%@page import="com.xal.ors.biz.CostItemService"%>
+<%@page import="com.xal.ors.util.OptTemplate"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -340,9 +353,23 @@ body {
 											</tr>
 										</thead>
 										<tbody>
+											<%
+												CostItemService service = new CostItemServiceImpl(new OptTemplate());
+												List<CostItem> list = service.query();
+
+												for(int i=0,j=list.size();i<j;i++){
+													CostItem item = list.get(i);
+											%>
 											<tr>
-												<td>sdf</td>
+												<td><%=item.getId() %><input type='checkbox'></td>
+												<td><%=item.getItemName() %></td>
+												<td><%=item.getDayNum() %></td>
+												<td><%=item.getCost() %></td>
+												<td><%=item.getComment() %></td>
 											</tr>
+											<%
+												}
+											%>
 										</tbody>
 									</table>
 								</div>
