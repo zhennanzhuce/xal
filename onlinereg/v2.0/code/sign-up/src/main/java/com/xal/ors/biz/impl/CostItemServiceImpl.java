@@ -8,10 +8,10 @@ import com.xal.ors.model.CostItem;
 import com.xal.ors.util.ObjectMapper;
 import com.xal.ors.util.OptTemplate;
 
-public class CostItemImpl implements CostItemService {
+public class CostItemServiceImpl implements CostItemService {
 	private OptTemplate optTemplate = null;
 
-	public CostItemImpl(OptTemplate optTemplate) {
+	public CostItemServiceImpl(OptTemplate optTemplate) {
 		super();
 		this.optTemplate = optTemplate;
 	}
