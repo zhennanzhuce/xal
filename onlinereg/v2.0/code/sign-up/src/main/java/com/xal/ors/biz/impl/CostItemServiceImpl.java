@@ -25,17 +25,19 @@ public class CostItemServiceImpl implements CostItemService {
 	}
 
 	public boolean saveNew(CostItem costItem) {
-		String sql = "insert into t_costitem (itemname, daynum, cost, comment) "
+		String sql = "insert into t_costitem (itemname, daynum, cost,costUnit, comment, comment2) "
 				+ "values(?, ?, ?, ?)";
 		Object[] obj = { costItem.getItemName(), costItem.getDayNum(),
-				costItem.getCost(), costItem.getComment() };
+				costItem.getCost(), costItem.getCostUnit(),
+				costItem.getComment(), costItem.getComment2() };
 		return optTemplate.update(sql, obj, false);
 	}
 
 	public boolean editItem(CostItem costItem) {
-		String sql = "update t_costitem set itemname=?, daynum=?, cost=?, comment=? where id=?";
+		String sql = "update t_costitem set itemname=?, daynum=?, cost=?, costUnit=?, comment=?, comment2=? where id=?";
 		Object[] obj = { costItem.getItemName(), costItem.getDayNum(),
-				costItem.getCost(), costItem.getComment(), costItem.getId() };
+				costItem.getCost(), costItem.getCostUnit(),
+				costItem.getComment(), costItem.getComment2(), costItem.getId() };
 		return optTemplate.update(sql, obj, false);
 	}
 
@@ -66,6 +68,8 @@ class CostItemDAOObjectMapper implements ObjectMapper {
 			ci.setCost(rs.getString("cost"));
 			ci.setDayNum(rs.getString("dayNum"));
 			ci.setItemName(rs.getString("itemName"));
+			ci.setCostUnit(rs.getString("costUnit"));
+			ci.setComment2(rs.getString("comment2"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

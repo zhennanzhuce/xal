@@ -7,6 +7,25 @@ public class CostItem {
 	private String cost;
 	private String comment;
 
+	private String costUnit;
+	private String comment2;
+
+	public String getCostUnit() {
+		return costUnit;
+	}
+
+	public void setCostUnit(String costUnit) {
+		this.costUnit = costUnit;
+	}
+
+	public String getComment2() {
+		return comment2;
+	}
+
+	public void setComment2(String comment2) {
+		this.comment2 = comment2;
+	}
+
 	public Integer getId() {
 		return id;
 	}

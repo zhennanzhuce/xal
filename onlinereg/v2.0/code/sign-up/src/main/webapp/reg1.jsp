@@ -361,11 +361,12 @@ body {
 													CostItem item = list.get(i);
 											%>
 											<tr>
-												<td><%=item.getId() %><input type='checkbox'></td>
+												<td><%=item.getId() %> <input type='checkbox'
+													value='<%=item.getId() %>'></td>
 												<td><%=item.getItemName() %></td>
 												<td><%=item.getDayNum() %></td>
 												<td><%=item.getCost() %></td>
-												<td><%=item.getComment() %></td>
+												<td title='<%=item.getComment2() %>'><%=item.getComment() %></td>
 											</tr>
 											<%
 												}
