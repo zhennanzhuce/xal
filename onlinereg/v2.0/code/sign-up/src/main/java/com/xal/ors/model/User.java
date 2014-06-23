@@ -3,7 +3,7 @@ package com.xal.ors.model;
 import java.util.Date;
 
 public class User {
-	private String id;
+	private Integer id;
 	private String userName;
 	private String userPass;
 	private String realName;
@@ -28,6 +28,15 @@ public class User {
 	private String lxdz;
 
 	private Date regtime;
+	private String costItem;
+
+	public String getCostItem() {
+		return costItem;
+	}
+
+	public void setCostItem(String costItem) {
+		this.costItem = costItem;
+	}
 
 	public Date getRegtime() {
 		return regtime;
@@ -173,11 +182,11 @@ public class User {
 		this.realName = realName;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
