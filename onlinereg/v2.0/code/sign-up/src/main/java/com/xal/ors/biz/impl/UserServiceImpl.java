@@ -79,9 +79,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> query(String userName, String idcard) {
-		String sql = "select * from s_user where userName=? or idcard=? order by id desc";
-		Object[] obj = { userName, idcard };
+	public List<User> query(String realName, String idcard) {
+		String sql = "select * from s_user where ";
+		if (!"".equals(realName.trim())) {
+			sql += " realname like '%" + realName + "%'";
+		}
+		if (!"".equals(idcard.trim())) {
+			if (!"".equals(realName.trim())) {
+				sql += " or ";
+			}
+			sql += " idcard like '%" + idcard + "%'";
+		}
+		sql += " order by id desc";
+
+		System.out.println(sql);
+
+		Object[] obj = {};
 		return (List<User>) optTemplate.query(sql, obj,
 				new UserDAOObjectMapper());
 	}
@@ -178,6 +191,7 @@ class UserDAOObjectMapper implements ObjectMapper {
 
 			user.setZy(rs.getString("zy"));
 			user.setZzmm(rs.getString("zzmm"));
+			user.setIsPass(rs.getInt("isPass"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

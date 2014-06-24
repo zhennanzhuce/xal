@@ -1,3 +1,5 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.xal.ors.model.CostItem"%>
 <%@page import="com.xal.ors.biz.impl.CostItemServiceImpl"%>
 <%@page import="com.xal.ors.biz.CostItemService"%>
@@ -8,6 +10,17 @@
 <%@page import="com.xal.ors.biz.UserService"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	//response.setCharacterEncoding("utf-8");
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+
+	String RealName = request.getParameter("RealName");
+	String Idcard = request.getParameter("Idcard");
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -49,8 +62,34 @@
 </head>
 <body>
 
-
 	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<strong>查询条件</strong>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<form id="searchFrm" class="form-inline" role="form" method="Get" action="list.jsp">
+							<div class="form-group">
+								<input type="text" class="form-control" id="searchFrm_RealName"
+									name="RealName" placeholder="姓名">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="searchFrm_Idcard"
+									name="Idcard" placeholder="身份证号">
+							</div>
+							<button type="submit"
+								class="btn btn-default olx-glyphicon glyphicon-search olx-glyphicon-btn">查询</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-md-12">
 									<table class="table table-bordered table-hover table-condensed table-striped" id='costItem'>
@@ -83,35 +122,6 @@
 											%>
 										</tbody>
 									</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<strong>查询条件</strong>
-						</h3>
-					</div>
-					<div class="panel-body">
-						<form class="form-inline" role="form">
-							<div class="form-group">
-								<input type="text" class="form-control" id="searchFrm_xm"
-									placeholder="姓名">
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" id="searchFrm_sfzh"
-									placeholder="身份证号">
-							</div>
-							<button type="button"
-								class="btn btn-default olx-glyphicon glyphicon-search olx-glyphicon-btn">查询</button>
-						</form>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -170,13 +180,19 @@
 								<th>联系电话</th>
 								<th>联系地址</th>
 								<th>项目编号</th>
+								<th>审核</th>
 							</tr>
 						</thead>
 						<tbody>
-
 							<%
 									UserService service = new UserServiceImpl(new OptTemplate());
-									List<User> list = service.query();
+
+									List<User> list = null;
+									if("".equals(RealName) && "".equals(Idcard)){
+										list = service.query();
+									}else{
+										list = service.query(RealName, Idcard);
+									}
 
 									for(int i=0,j=list.size();i<j;i++){
 										User item = list.get(i);
@@ -202,6 +218,7 @@
 								<td><%=item.getLxdh() %></td>
 								<td><%=item.getLxdz() %></td>
 								<td><%=item.getCostItem() %></td>
+								<td><% if(0 == item.getIsPass()){ %>未通过<% } else { %>通过<% } %></td>
 							</tr>
 							<%
 									}
