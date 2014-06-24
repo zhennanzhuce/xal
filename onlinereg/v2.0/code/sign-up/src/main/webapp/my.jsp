@@ -147,7 +147,7 @@ body {
 								<label for="addFrm2_UserName" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>用户名</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm2_UserName"
+									<input type="text" class="form-control" id="addFrm2_UserName" disabled
 										name="UserName" placeholder="用户名" value="<%=user.getUserName() %>">
 								</div>
 								<label for="addFrm2_OldPass" class="col-sm-2 control-label"><span
@@ -562,6 +562,7 @@ body {
 			}
 
 			var data = $('#addFrm').serializeObjectForm ();
+			data.Id = <%=user.getId()%>
 			data.ts = (new Date()).valueOf();
 
 			var vals = [];
@@ -571,7 +572,7 @@ body {
 			data.CostItem = vals.toString();
 
 			$.ajax({
-				url : 'Reg1',
+				url : 'EditInfo',
 				type : "POST",
 				dataType : "json",
 				data: data
@@ -587,24 +588,8 @@ body {
 					$('#frm_ShowErr').text(valiResu[0]);
 					return;
 				}
-				alert('注册成功');
+				alert('修改成功');
 				location.reload();
-			});
-		});
-
-		$('#btn_chk_user').click(function() {
-			console.log('检测用户名是否存在');
-			$.ajax({
-				url : 'CheckUserExist',
-				type : "GET",
-				dataType : "json",
-				data: {
-					UserName: $('#addFrm_UserName').val(),
-					ts: (new Date()).valueOf()
-				}
-			}).done(function(data) {
-				$('#addFrm_ShowChkUser').css('display', 'block');
-				$('#addFrm_ShowChkUser').text(data.success ? '用户名已经存在，请更换' : '可以正常注册');
 			});
 		});
 

@@ -99,19 +99,31 @@ public class UserServiceImpl implements UserService {
 				new UserDAOObjectMapper());
 	}
 
-	public boolean editItem(User user) {
-		String sql = "update s_user set username=?, userpass=?, realname=?, sex=?, idcard=?, "
+	public ResultMapper editItem(User user) {
+		ResultMapper mapper = new ResultMapper();
+		mapper.setSuccess(false);
+
+		String sql = "update s_user set realname=?, sex=?, idcard=?, "
 				+ "zzmm=?, mz=?, jg=?, byyx=?, bysj=?, "
 				+ "xl=?, zy=?, gzdw=?, szbm=?, cszy=?, "
 				+ "zw=?, zc=?, lxdh=?, lxdz=?, costitem=? where id=?";
 
-		Object[] obj = { user.getUserName(), user.getUserPass(),
-				user.getRealName(), user.getSex(), user.getIdcard(),
+		Object[] obj = { user.getRealName(), user.getSex(), user.getIdcard(),
 				user.getZzmm(), user.getMz(), user.getJg(), user.getByyx(),
 				user.getBysj(), user.getXl(), user.getZy(), user.getGzdw(),
 				user.getSzbm(), user.getCszy(), user.getZw(), user.getZc(),
-				user.getLxdh(), user.getLxdz(), user.getCostItem() };
-		return optTemplate.update(sql, obj, false);
+				user.getLxdh(), user.getLxdz(), user.getCostItem(),
+				user.getId() };
+
+		boolean result = optTemplate.update(sql, obj, false);
+
+		if (!result) {
+			String[] msg = { "修改失败", "" };
+			mapper.setMsg(msg);
+		}
+		mapper.setSuccess(result);
+
+		return mapper;
 	}
 
 	public boolean removeItem(Integer id) {

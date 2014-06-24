@@ -62,4 +62,14 @@
 		<servlet-name>ChangePass</servlet-name>
 		<url-pattern>/ChangePass</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>EditInfo</display-name>
+		<servlet-name>EditInfo</servlet-name>
+		<servlet-class>com.xal.ors.servlet.EditInfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditInfo</servlet-name>
+		<url-pattern>/EditInfo</url-pattern>
+	</servlet-mapping>
 </web-app>

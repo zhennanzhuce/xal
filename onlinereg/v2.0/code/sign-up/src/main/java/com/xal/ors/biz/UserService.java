@@ -14,7 +14,7 @@ public interface UserService {
 
 	ResultMapper register(User user);
 
-	boolean editItem(User user);
+	ResultMapper editItem(User user);
 
 	boolean removeItem(Integer id);
 
