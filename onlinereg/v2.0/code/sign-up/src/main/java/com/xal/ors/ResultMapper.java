@@ -1,11 +1,9 @@
 package com.xal.ors;
 
-import java.util.ArrayList;
-
 public class ResultMapper {
 	private Object data;
 	private boolean success;
-	private ArrayList<String> msg;
+	private String[] msg;
 
 	public Object getData() {
 		return data;
@@ -23,11 +21,11 @@ public class ResultMapper {
 		this.success = success;
 	}
 
-	public ArrayList<String> getMsg() {
+	public String[] getMsg() {
 		return msg;
 	}
 
-	public void setMsg(ArrayList<String> msg) {
+	public void setMsg(String[] msg) {
 		this.msg = msg;
 	}
 

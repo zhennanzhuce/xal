@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
+import com.xal.ors.ResultMapper;
 import com.xal.ors.biz.UserService;
 import com.xal.ors.model.User;
 import com.xal.ors.util.ObjectMapper;
@@ -17,7 +18,29 @@ public class UserServiceImpl implements UserService {
 		this.optTemplate = optTemplate;
 	}
 
-	public boolean register(User user) {
+	public ResultMapper register(User user) {
+		ResultMapper mapper = new ResultMapper();
+		mapper.setSuccess(false);
+
+		if ("".equals(user.getUserName())) {
+			String[] msg = { "用户名不能为空", "UserName" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		if ("".equals(user.getUserPass())) {
+			String[] msg = { "密码不能为空", "UserPass" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		User exist = isExist(user.getUserName());
+		if (null != exist) {
+			String[] msg = { "用户名已经存在", "UserName" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		String sql = "insert into s_user (username, userpass, realname, sex, idcard, "
 				+ "zzmm, mz, jg, byyx, bysj, "
 				+ "xl, zy, gzdw, szbm, cszy, "
@@ -34,7 +57,15 @@ public class UserServiceImpl implements UserService {
 				user.getSzbm(), user.getCszy(), user.getZw(), user.getZc(),
 				user.getLxdh(), user.getLxdz(), user.getRegtime(),
 				user.getCostItem(), user.getIsPass() };
-		return optTemplate.update(sql, obj, false);
+		boolean result = optTemplate.update(sql, obj, false);
+
+		if (!result) {
+			String[] msg = { "注册失败", "" };
+			mapper.setMsg(msg);
+		}
+		mapper.setSuccess(result);
+
+		return mapper;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -100,14 +131,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean isExist(String userName) {
+	public User isExist(String userName) {
 		String sql = "select * from s_user where userName=?";
 		Object[] obj = { userName };
 
 		List<User> users = (List<User>) optTemplate.query(sql, obj,
 				new UserDAOObjectMapper());
 
-		return (null != users && 1 == users.size());
+		if (null == users) {
+			return null;
+		}
+
+		return 1 == users.size() ? users.get(0) : null;
 	}
 }
 

@@ -2,6 +2,7 @@ package com.xal.ors.biz;
 
 import java.util.List;
 
+import com.xal.ors.ResultMapper;
 import com.xal.ors.model.User;
 
 public interface UserService {
@@ -11,7 +12,7 @@ public interface UserService {
 
 	List<User> query(String userName, String idcard);
 
-	boolean register(User user);
+	ResultMapper register(User user);
 
 	boolean editItem(User user);
 
@@ -25,5 +26,5 @@ public interface UserService {
 	 * @param userName
 	 * @return
 	 */
-	boolean isExist(String userName);
+	User isExist(String userName);
 }
