@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
-import com.xal.ors.model.User;
+import com.xal.ors.biz.UserService;
+import com.xal.ors.biz.impl.UserServiceImpl;
+import com.xal.ors.util.OptTemplate;
 
 public class Login extends HttpServlet {
 
@@ -31,15 +33,12 @@ public class Login extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		User user = new User();
-		user.setUserName("haha");
+		UserService service = new UserServiceImpl(new OptTemplate());
 
+		boolean login = service.login(request.getParameter("UserName"),
+				request.getParameter("UserPass"));
 		ResultMapper mapper = new ResultMapper();
-		mapper.setData(user);
-		mapper.setSuccess(true);
-
-		String[] msg = { "用户名不能为空", "UserName" };
-		mapper.setMsg(msg);
+		mapper.setSuccess(login);
 
 		Gson gson = new Gson();
 		String result = gson.toJson(mapper);

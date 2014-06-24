@@ -65,7 +65,7 @@ body {
 		<h3>《职业卫生安全评价，从入门到精通》</h3>
 		<div class="form-group">
 			<input id="logFrm_UserName" name="UserName" type="text"
-				class="form-control" placeholder="姓名">
+				class="form-control" placeholder="用户名">
 		</div>
 		<div class="form-group">
 			<input id="logFrm_UserPass" name="UserPass" type="password"
@@ -119,16 +119,19 @@ body {
 			$.ajax({
 				url : 'Login',
 				type : "GET",
-				dataType : "json"
+				dataType : "json",
+				data: {
+					UserName: $('#logFrm_UserName').val(),
+					UserPass: $('#logFrm_UserPass').val(),
+					ts: (new Date()).valueOf()
+				}
 			}).done(function(data) {
 				if (!data.success) {
-					var msg = data.msg;
-					$('#regFrm_ShowErr').text(msg[0]);
 					$('#regFrm_ShowErr').css('display', 'block');
-					$('#logFrm_' + msg[1]).focus();
+					$('#regFrm_ShowErr').text('用户名或密码输入错误，请重试！');
 					return;
 				}
-				console.log('my.jsp');
+				location.href = 'my.jsp';
 			});
 		}
 		$('#btn_submit').click(subFrm);
