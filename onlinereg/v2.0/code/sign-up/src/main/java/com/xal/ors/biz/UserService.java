@@ -18,7 +18,7 @@ public interface UserService {
 
 	boolean removeItem(Integer id);
 
-	boolean passUser(Integer[] ids);
+	boolean passUser(String ids, Integer isPass);
 
 	/**
 	 * 监测用户名是否存在

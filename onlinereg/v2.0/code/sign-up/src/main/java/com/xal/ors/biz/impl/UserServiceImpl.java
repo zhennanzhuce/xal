@@ -134,14 +134,10 @@ public class UserServiceImpl implements UserService {
 		return password.equals(users.get(0).getUserPass());
 	}
 
-	public boolean passUser(Integer[] ids) {
-		StringBuffer sbStr = new StringBuffer();
-		Integer[] obj = ids;
-		for (int i = 0; i < ids.length; i++) {
-			sbStr.append("?,");
-		}
-		String sql = "update s_user set isPass=1 where id in ("
-				+ sbStr.substring(0, sbStr.length() - 1) + ")";
+	public boolean passUser(String ids, Integer isPass) {
+		String sql = "update s_user set isPass=" + isPass + " where id in ("
+				+ ids + ")";
+		Object[] obj = {};
 		return optTemplate.update(sql, obj, false);
 	}
 

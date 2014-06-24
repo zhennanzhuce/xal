@@ -124,7 +124,6 @@
 									</table>
 				</div>
 			</div>
-		</div>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -137,7 +136,7 @@
 
  						<div class="panel-heading">
 							<div class="btn-group">
-								<button class="btn btn-info olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal">审核</button>
+								<button id="btn_sh" class="btn btn-info olx-glyphicon glyphicon-info-sign olx-glyphicon-btn">审核</button>
 							    <button id="btn_del" class="btn btn-warning olx-glyphicon glyphicon-remove-sign olx-glyphicon-btn">删除</button>
 							</div>
 
@@ -218,7 +217,19 @@
 								<td><%=item.getLxdh() %></td>
 								<td><%=item.getLxdz() %></td>
 								<td><%=item.getCostItem() %></td>
-								<td><% if(0 == item.getIsPass()){ %>未通过<% } else { %>通过<% } %></td>
+								<td><%
+									switch(item.getIsPass()){
+									case 0:
+										out.print("未审核");
+										break;
+									case 1:
+										out.print("通过");
+										break;
+									case 2:
+										out.print("未通过");
+										break;
+									}
+								%></td>
 							</tr>
 							<%
 									}
@@ -230,11 +241,48 @@
 		</div>
 	</div>
 
+
 	<script type="text/javascript" src="/cdn/js/jquery/2.0.2/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		$(function() {
+		});
+		$('#btn_sh').click(function(){
+			console.log("审核");
+
+			var vals = [];
+			$('#table1 input[type="checkbox"]:checked').each(function(i, checkbox){
+				vals.push($(checkbox).val());
+			});
+			var ids = vals.toString();
+			if('' == ids) return alert('请选择报名人员！');
+
+			var cm = confirm('审核通过点确定，不通过选择取消！');
+
+			$.ajax({
+				url : 'Verify',
+				type : "POST",
+				dataType : "json",
+				data: {
+					ids: ids,
+					isPass: cm ? 1 : 2,
+					ts: (new Date()).valueOf()
+				}
+			}).done(function(data) {
+				alert('操作成功！');
+				location.reload();
+			});
+		});
+		$('#btn_del').click(function(){
+			console.log('删除');
+
+			var vals = [];
+			$('#table1 input[type="checkbox"]:checked').each(function(i, checkbox){
+				vals.push($(checkbox).val());
+			});
+			var ids = vals.toString();
+			if('' == ids) return alert('请选择报名人员！');
 		});
 	</script>
 </body>

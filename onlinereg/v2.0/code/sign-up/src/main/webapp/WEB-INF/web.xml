@@ -42,4 +42,14 @@
 		<servlet-name>CheckUserExist</servlet-name>
 		<url-pattern>/CheckUserExist</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>Verify</display-name>
+		<servlet-name>Verify</servlet-name>
+		<servlet-class>com.xal.ors.servlet.Verify</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Verify</servlet-name>
+		<url-pattern>/Verify</url-pattern>
+	</servlet-mapping>
 </web-app>
