@@ -103,6 +103,19 @@ public class UserServiceImpl implements UserService {
 		ResultMapper mapper = new ResultMapper();
 		mapper.setSuccess(false);
 
+		User user1 = findById(user.getId().toString());
+		if (null == user1) {
+			String[] msg = { "修改失败", "" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		if (1 == user1.getIsPass()) {
+			String[] msg = { "禁止修改", "" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		String sql = "update s_user set realname=?, sex=?, idcard=?, "
 				+ "zzmm=?, mz=?, jg=?, byyx=?, bysj=?, "
 				+ "xl=?, zy=?, gzdw=?, szbm=?, cszy=?, "
