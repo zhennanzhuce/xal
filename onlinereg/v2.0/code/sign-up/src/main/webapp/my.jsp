@@ -14,6 +14,12 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 
+	Object lv = session.getAttribute("lv");
+	if(null == lv || 1 != (Integer)lv){
+		response.sendRedirect("index.jsp");
+		return;
+	}
+
 	Object id = session.getAttribute("id");
 	if(null == id) {
 		response.sendRedirect("index.jsp");
@@ -79,6 +85,12 @@ body {
 	font-weight: normal;
 }
 
+#frm2_ShowErr {
+	color: red;
+	font-size: 12px;
+	font-weight: normal;
+}
+
 #addFrm_ShowChkUser {
 	color: red;
 	font-size: 12px;
@@ -138,11 +150,11 @@ body {
 									<input type="text" class="form-control" id="addFrm2_UserName"
 										name="UserName" placeholder="用户名" value="<%=user.getUserName() %>">
 								</div>
-								<label for="addFrm2_oUserPass" class="col-sm-2 control-label"><span
+								<label for="addFrm2_OldPass" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>原始密码</label>
 								<div class="col-sm-4">
 									<input type="password" class="form-control"
-										id="addFrm2_oUserPass" name="oUserPass" placeholder="原始密码">
+										id="addFrm2_OldPass" name="OldPass" placeholder="原始密码">
 								</div>
 							</div>
 							<div class="form-group">
@@ -161,9 +173,12 @@ body {
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="button" class="btn btn-primary" id="btn_submit">修改</button>
+									<button type="button" class="btn btn-primary" id="btn_pass_submit">修改</button>
 									<button type="reset" class="btn btn-default">重置</button>
 								</div>
+							</div>
+							<div class="form-group" style="display:none">
+								<label id="frm2_ShowErr" class="col-sm-offset-2 col-sm-10"></label>
 							</div>
 						</form>
 					</div>
@@ -456,7 +471,7 @@ body {
 													CostItem item = list.get(i);
 											%>
 											<tr>
-												<td><%=item.getId() %> <input type='checkbox'
+												<td><%=item.getId() %> <input type='checkbox' id='costItem_chk_<%=item.getId() %>'
 													value='<%=item.getId() %>'></td>
 												<td><%=item.getItemName() %></td>
 												<td><%=item.getDayNum() %></td>
@@ -473,8 +488,8 @@ body {
 
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="button" class="btn btn-primary" id="btn_submit">提交</button>
-									<button type="reset" class="btn btn-default">重置</button>
+									<button type="button" class="btn btn-primary" id="btn_submit"<% if(1 == user.getIsPass()) out.print(" disabled"); %>>提交</button>
+									<button type="reset" class="btn btn-default"<% if(1 == user.getIsPass()) out.print(" disabled"); %>>重置</button>
 								</div>
 							</div>
 							<div class="form-group">
@@ -521,6 +536,14 @@ body {
 			$('#addFrm_Xl').val('<%=user.getXl()%>');
 			$('#addFrm_Bysj').val('<%=user.getBysj()%>');
 			$('#addFrm_shadow_Bysj').val('<%=user.getBysj()%>');
+
+			var s = '<%=user.getCostItem()%>';
+			var arr = s.split(',');
+			for (var i in arr) {
+				var id = arr[i];
+				var chkid = 'costItem_chk_' + id;
+				$('#' + chkid) .attr('checked', true);
+			}
 		});
 
 		function valiFrm(){
@@ -582,6 +605,37 @@ body {
 			}).done(function(data) {
 				$('#addFrm_ShowChkUser').css('display', 'block');
 				$('#addFrm_ShowChkUser').text(data.success ? '用户名已经存在，请更换' : '可以正常注册');
+			});
+		});
+
+		$('#btn_pass_submit').click(function(){
+			console.log("修改密码");
+			$('#frm2_ShowErr').parent().css('display', 'block');
+			var frmObj = $('#addFrm2').serializeObjectForm();
+			if ('' === frmObj.OldPass) {
+				$('#addFrm2_OldPass').focus();
+				return $('#frm2_ShowErr').text('原始密码不能为空。');
+			}
+			if ('' === frmObj.UserPass) {
+				$('#addFrm2_UserPass').focus();
+				 return $('#frm2_ShowErr').text('登陆密码不能为空。');
+			}
+			if (frmObj.UserPass2 !== frmObj.UserPass) {
+				$('#addFrm2_UserPass2').focus();
+				 return $('#frm2_ShowErr').text('登陆密码与确认密码不一致。');
+			}
+
+			frmObj.ts = (new Date()).valueOf();
+
+			$.ajax({
+				url : 'ChangePass',
+				type : "POST",
+				dataType : "json",
+				data: frmObj
+			}).done(function(data) {
+				if(data.success) return alert('密码修改成功!');
+				$('#frm2_ShowErr').parent().css('display', 'block');
+				$('#frm2_ShowErr').text('密码修改失败，请确认输入是否正确。');
 			});
 		});
 	</script>

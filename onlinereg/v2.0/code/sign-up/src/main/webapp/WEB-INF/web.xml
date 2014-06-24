@@ -52,4 +52,14 @@
 		<servlet-name>Verify</servlet-name>
 		<url-pattern>/Verify</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ChangePass</display-name>
+		<servlet-name>ChangePass</servlet-name>
+		<servlet-class>com.xal.ors.servlet.ChangePass</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangePass</servlet-name>
+		<url-pattern>/ChangePass</url-pattern>
+	</servlet-mapping>
 </web-app>

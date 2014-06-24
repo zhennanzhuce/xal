@@ -127,6 +127,7 @@ body {
 				}
 			}).done(function(data) {
 				if (!data.success) {
+					$('#logFrm_UserPass').focus();
 					$('#regFrm_ShowErr').css('display', 'block');
 					$('#regFrm_ShowErr').text('用户名或密码输入错误，请重试！');
 					return;

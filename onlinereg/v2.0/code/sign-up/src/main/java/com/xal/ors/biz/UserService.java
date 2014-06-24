@@ -29,4 +29,6 @@ public interface UserService {
 	User isExist(String userName);
 
 	User findById(String id);
+
+	boolean changePass(User user, String newPass);
 }

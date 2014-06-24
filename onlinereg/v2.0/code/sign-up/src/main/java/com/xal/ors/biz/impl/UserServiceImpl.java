@@ -172,6 +172,18 @@ public class UserServiceImpl implements UserService {
 
 		return 1 == users.size() ? users.get(0) : null;
 	}
+
+	public boolean changePass(User user, String newPass) {
+		User user1 = login(user.getUserName(), user.getUserPass());
+
+		if (null == user1)
+			return false;
+
+		String sql = "update s_user set userpass=? where id=?";
+
+		Object[] obj = { newPass, user1.getId() };
+		return optTemplate.update(sql, obj, false);
+	}
 }
 
 class UserDAOObjectMapper implements ObjectMapper {
