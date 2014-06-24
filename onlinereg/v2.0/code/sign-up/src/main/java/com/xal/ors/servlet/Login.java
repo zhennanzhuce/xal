@@ -2,7 +2,6 @@ package com.xal.ors.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -39,10 +38,7 @@ public class Login extends HttpServlet {
 		mapper.setData(user);
 		mapper.setSuccess(true);
 
-		ArrayList<String> msg = new ArrayList<String>();
-		msg.add("用户名不能为空");
-		msg.add("UserName");
-
+		String[] msg = { "用户名不能为空", "UserName" };
 		mapper.setMsg(msg);
 
 		Gson gson = new Gson();
