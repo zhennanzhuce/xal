@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean login(String userName, String password) {
+	public User login(String userName, String password) {
 		String sql = "select * from s_user where username=?";
 		Object[] obj = { userName };
 
@@ -129,9 +129,11 @@ public class UserServiceImpl implements UserService {
 				new UserDAOObjectMapper());
 
 		if (null == users || 0 == users.size())
-			return false;
+			return null;
 
-		return password.equals(users.get(0).getUserPass());
+		User user = users.get(0);
+
+		return password.equals(user.getUserPass()) ? user : null;
 	}
 
 	public boolean passUser(String ids, Integer isPass) {
@@ -145,6 +147,21 @@ public class UserServiceImpl implements UserService {
 	public User isExist(String userName) {
 		String sql = "select * from s_user where userName=?";
 		Object[] obj = { userName };
+
+		List<User> users = (List<User>) optTemplate.query(sql, obj,
+				new UserDAOObjectMapper());
+
+		if (null == users) {
+			return null;
+		}
+
+		return 1 == users.size() ? users.get(0) : null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public User findById(String id) {
+		String sql = "select * from s_user where id=?";
+		Object[] obj = { id };
 
 		List<User> users = (List<User>) optTemplate.query(sql, obj,
 				new UserDAOObjectMapper());

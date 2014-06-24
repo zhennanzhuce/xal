@@ -6,7 +6,7 @@ import com.xal.ors.ResultMapper;
 import com.xal.ors.model.User;
 
 public interface UserService {
-	boolean login(String userName, String password);
+	User login(String userName, String password);
 
 	List<User> query();
 
@@ -27,4 +27,6 @@ public interface UserService {
 	 * @return
 	 */
 	User isExist(String userName);
+
+	User findById(String id);
 }

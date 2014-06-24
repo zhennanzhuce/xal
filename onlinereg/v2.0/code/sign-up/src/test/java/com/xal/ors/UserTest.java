@@ -24,7 +24,7 @@ public class UserTest extends TestCase {
 
 	public void testLogin() {
 		UserService service = new UserServiceImpl(new OptTemplate());
-		boolean result = service.login("haha", "1234");
+		User result = service.login("haha", "1234");
 		System.out.println(result);
 	}
 

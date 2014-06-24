@@ -8,11 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
 import com.xal.ors.biz.UserService;
 import com.xal.ors.biz.impl.UserServiceImpl;
+import com.xal.ors.model.User;
 import com.xal.ors.util.OptTemplate;
 
 public class Login extends HttpServlet {
@@ -35,13 +37,19 @@ public class Login extends HttpServlet {
 
 		UserService service = new UserServiceImpl(new OptTemplate());
 
-		boolean login = service.login(request.getParameter("UserName"),
+		User login = service.login(request.getParameter("UserName"),
 				request.getParameter("UserPass"));
 		ResultMapper mapper = new ResultMapper();
-		mapper.setSuccess(login);
+		mapper.setSuccess(null != login);
 
 		Gson gson = new Gson();
 		String result = gson.toJson(mapper);
+
+		if (null != login) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", login.getId());
+			session.setAttribute("user", login);
+		}
 
 		out.write(result);
 		out.flush();

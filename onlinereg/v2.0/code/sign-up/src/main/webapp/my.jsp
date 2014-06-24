@@ -1,3 +1,6 @@
+<%@page import="com.xal.ors.biz.UserService"%>
+<%@page import="com.xal.ors.biz.impl.UserServiceImpl"%>
+<%@page import="com.xal.ors.model.User"%>
 <%@page import="com.xal.ors.model.CostItem"%>
 <%@page import="java.util.List"%>
 <%@page import="com.xal.ors.biz.impl.CostItemServiceImpl"%>
@@ -10,6 +13,17 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+
+	Object id = session.getAttribute("id");
+	if(null == id) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
+
+	UserService service3 = new UserServiceImpl(new OptTemplate());
+	User user = service3.findById(id.toString());
+
+
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -78,9 +92,33 @@ body {
 
 		<div class="row">
 			<div class="col-md-12" style="margin-bottom:-10px">
-				<div id="info_alert" class="alert alert-info">
+				<div id="info_alert" class="alert alert-<%
+						switch(user.getIsPass()){
+						case 0:
+							out.print("info");
+							break;
+						case 1:
+							out.print("success");
+							break;
+						case 2:
+							out.print("danger");
+							break;
+						}
+					%>">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong>恭喜你：</strong>《职业卫生安全评价，从入门到精通》报名成功。
+					<strong>提示：</strong><%
+						switch(user.getIsPass()){
+						case 0:
+							out.print("《职业卫生安全评价，从入门到精通》审核正在进行中。");
+							break;
+						case 1:
+							out.print("恭喜你，《职业卫生安全评价，从入门到精通》报名成功。");
+							break;
+						case 2:
+							out.print("《职业卫生安全评价，从入门到精通》审核未通过。");
+							break;
+						}
+					%>
 				</div>
 			</div>
 		</div>
@@ -92,13 +130,13 @@ body {
 						<b>登陆信息</b>
 					</div>
 					<div class="panel-body">
-						<form id="addFrm2" class="form-horizontal" role="form" data-url="Reg1">
+						<form id="addFrm2" class="form-horizontal" role="form">
 							<div class="form-group">
 								<label for="addFrm2_UserName" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>用户名</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm2_UserName"
-										name="UserName" placeholder="用户名">
+										name="UserName" placeholder="用户名" value="<%=user.getUserName() %>">
 								</div>
 								<label for="addFrm2_oUserPass" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>原始密码</label>
@@ -148,7 +186,7 @@ body {
 									class="olx-form-required">*</span>姓名</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_RealName"
-										name="RealName" placeholder="姓名">
+										name="RealName" placeholder="姓名" value="<%=user.getRealName() %>">
 								</div>
 								<label for="addFrm_Sex" class="col-sm-2 control-label">性别</label>
 								<div class="col-sm-4">
@@ -162,7 +200,7 @@ body {
 												<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">女
 											</label>
 										</div-->
-									<select class="form-control" id="addFrm_Sex" name="Sex">
+									<select class="form-control" id="addFrm_Sex" name="Sex" value="<%=user.getSex() %>">
 										<option value="男">男</option>
 										<option value="女">女</option>
 									</select>
@@ -173,11 +211,11 @@ body {
 									class="olx-form-required">*</span>身份证号</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Idcard"
-										name='Idcard' placeholder="身份证号">
+										name='Idcard' placeholder="身份证号" value="<%=user.getIdcard() %>">
 								</div>
 								<label for="addFrm_Zzmm" class="col-sm-2 control-label">政治面貌</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_Zzmm" name="Zzmm">
+									<select class="form-control" id="addFrm_Zzmm" name="Zzmm" value="<%=user.getZzmm() %>">
 										<option value="中共党员">中共党员</option>
 										<option value="中共预备党员">中共预备党员</option>
 										<option value="共青团员">共青团员</option>
@@ -198,7 +236,7 @@ body {
 							<div class="form-group">
 								<label for="addFrm_Mz" class="col-sm-2 control-label">民族</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_Mz" name="Mz">
+									<select class="form-control" id="addFrm_Mz" name="Mz" value="<%=user.getMz() %>">
 										<option value="汉族">汉族</option>
 										<option value="蒙古族">蒙古族</option>
 										<option value="彝族">彝族</option>
@@ -259,7 +297,7 @@ body {
 								</div>
 								<label for="addFrm_Jg" class="col-sm-2 control-label">籍贯</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_Jg" name="Jg">
+									<select class="form-control" id="addFrm_Jg" name="Jg" value="<%=user.getJg() %>">
 										<option value="北京">北京</option>
 										<option value="天津">天津</option>
 										<option value="河北">河北</option>
@@ -302,7 +340,7 @@ body {
 									class="olx-form-required">*</span>毕业院校</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Byyx"
-										name="Byyx" placeholder="毕业院校">
+										name="Byyx" placeholder="毕业院校" value="<%=user.getByyx() %>">
 								</div>
 								<label for="addFrm_shadow_Bysj" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>毕业时间</label>
@@ -319,13 +357,13 @@ body {
 									</div>
 									<input type="hidden" data-olx-type="olx.form.input"
 										class="form-control" id="addFrm_Bysj" name="Bysj"
-										placeholder="毕业时间">
+										placeholder="毕业时间" value="<%=user.getBysj() %>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="addFrm_Xl" class="col-sm-2 control-label">学历</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_Xl" name='Xl'>
+									<select class="form-control" id="addFrm_Xl" name='Xl' value="<%=user.getXl() %>">
 										<option value="大专">大专</option>
 										<option value="本科" selected>本科</option>
 										<option value="硕士">硕士</option>
@@ -343,7 +381,7 @@ body {
 									class="olx-form-required">*</span>专业</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Zy"
-										name="Zy" placeholder="专业">
+										name="Zy" placeholder="专业" value="<%=user.getZy() %>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -351,13 +389,13 @@ body {
 									class="olx-form-required">*</span>工作单位</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Gzdw"
-										name="Gzdw" placeholder="工作单位">
+										name="Gzdw" placeholder="工作单位" value="<%=user.getGzdw() %>">
 								</div>
 								<label for="addFrm_Szbm" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>所在部门</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Szbm"
-										name="Szbm" placeholder="所在部门">
+										name="Szbm" placeholder="所在部门" value="<%=user.getSzbm() %>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -365,12 +403,12 @@ body {
 									class="olx-form-required">*</span>从事专业</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Cszy"
-										name="Cszy" placeholder="从事专业">
+										name="Cszy" placeholder="从事专业" value="<%=user.getCszy() %>">
 								</div>
 								<label for="addFrm_Zw" class="col-sm-2 control-label">职位</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Zw"
-										name="Zw" placeholder="职位">
+										name="Zw" placeholder="职位" value="<%=user.getZw() %>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -378,20 +416,20 @@ body {
 									class="olx-form-required">*</span>职称</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Zc"
-										name="Zc" placeholder="职称">
+										name="Zc" placeholder="职称" value="<%=user.getZc() %>">
 								</div>
 								<label for="addFrm_Lxdh" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>联系电话</label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Lxdh"
-										name="Lxdh" placeholder="联系电话">
+										name="Lxdh" placeholder="联系电话" value="<%=user.getLxdh() %>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="addFrm_Lxdz" class="col-sm-2 control-label">联系地址</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="addFrm_Lxdz"
-										name="Lxdz" placeholder="联系地址">
+										name="Lxdz" placeholder="联系地址" value="<%=user.getLxdz() %>">
 								</div>
 							</div>
 
