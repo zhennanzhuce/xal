@@ -179,8 +179,6 @@ body {
 					</div>
 					<div class="panel-body">
 						<form id="addFrm" class="form-horizontal" role="form" data-url="Reg1">
-							<div class="form-group"></div>
-							<div class="form-group"></div>
 							<div class="form-group">
 								<label for="addFrm_RealName" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>姓名</label>
@@ -516,29 +514,16 @@ body {
 			forceParse : 0
 		});
 		$(function() {
-			/*var xm = $.fn.olxQueryString('xm');
-			if (0 === xm.length)
-				return location.href = 'step0.html';
-			var sfzh = $.fn.olxQueryString('sfzh');
-			if (0 === sfzh.length)
-				return location.href = 'step0.html';
-			$('#addFrm_xm').val(decodeURI(xm));
-			$('#addFrm_sfzh').val(sfzh);*/
+			$('#addFrm_Sex').val('<%=user.getSex()%>');
+			$('#addFrm_Zzmm').val('<%=user.getZzmm()%>');
+			$('#addFrm_Mz').val('<%=user.getMz()%>');
+			$('#addFrm_Jg').val('<%=user.getJg()%>');
+			$('#addFrm_Xl').val('<%=user.getXl()%>');
+			$('#addFrm_Bysj').val('<%=user.getBysj()%>');
+			$('#addFrm_shadow_Bysj').val('<%=user.getBysj()%>');
 		});
 
 		function valiFrm(){
-			var username = $('#addFrm_UserName').val().trim();
-			if(!username.length){
-				return '用户名不能为空。';
-			}
-			var userpass = $('#addFrm_UserPass').val().trim();
-			if(!userpass){
-				return '登陆密码不能为空。';
-			}
-			var userpass2 = $('#addFrm_UserPass2').val().trim();
-			if(userpass != userpass2){
-				return '登陆密码与确认密码不一致。';
-			}
 		}
 
 		$('#btn_submit').click(function() {
