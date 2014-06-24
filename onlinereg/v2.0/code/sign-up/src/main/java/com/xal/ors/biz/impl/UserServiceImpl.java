@@ -22,12 +22,14 @@ public class UserServiceImpl implements UserService {
 		ResultMapper mapper = new ResultMapper();
 		mapper.setSuccess(false);
 
+		user.setUserName(user.getUserName().trim());
 		if ("".equals(user.getUserName())) {
 			String[] msg = { "用户名不能为空", "UserName" };
 			mapper.setMsg(msg);
 			return mapper;
 		}
 
+		user.setUserPass(user.getUserPass().trim());
 		if ("".equals(user.getUserPass())) {
 			String[] msg = { "密码不能为空", "UserPass" };
 			mapper.setMsg(msg);

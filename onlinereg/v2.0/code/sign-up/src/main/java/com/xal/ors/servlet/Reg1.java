@@ -37,32 +37,32 @@ public class Reg1 extends HttpServlet {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			user.setBysj(sdf.parse(request.getParameter("bysj")));
+			user.setBysj(sdf.parse(request.getParameter("Bysj")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user.setByyx(request.getParameter("byyx"));
-		user.setCostItem(request.getParameter("costItem"));
-		user.setCszy(request.getParameter("cszy"));
-		user.setGzdw(request.getParameter("gzdw"));
-		user.setIdcard(request.getParameter("idcard"));
+		user.setByyx(request.getParameter("Byyx"));
+		user.setCostItem(request.getParameter("CostItem"));
+		user.setCszy(request.getParameter("Cszy"));
+		user.setGzdw(request.getParameter("Gzdw"));
+		user.setIdcard(request.getParameter("Idcard"));
 
-		user.setJg(request.getParameter("jg"));
-		user.setLxdh(request.getParameter("lxdh"));
-		user.setLxdz(request.getParameter("lxdz"));
-		user.setMz(request.getParameter("mz"));
+		user.setJg(request.getParameter("Jg"));
+		user.setLxdh(request.getParameter("Lxdh"));
+		user.setLxdz(request.getParameter("Lxdz"));
+		user.setMz(request.getParameter("Mz"));
 
-		user.setRealName(request.getParameter("realName"));
-		user.setSex(request.getParameter("sex"));
-		user.setSzbm(request.getParameter("szbm"));
-		user.setUserName(request.getParameter("userName"));
-		user.setUserPass(request.getParameter("userPass"));
+		user.setRealName(request.getParameter("RealName"));
+		user.setSex(request.getParameter("Sex"));
+		user.setSzbm(request.getParameter("Szbm"));
+		user.setUserName(request.getParameter("UserName"));
+		user.setUserPass(request.getParameter("UserPass"));
 
-		user.setXl(request.getParameter("xl"));
-		user.setZc(request.getParameter("zc"));
-		user.setZw(request.getParameter("zw"));
-		user.setZy(request.getParameter("zy"));
-		user.setZzmm(request.getParameter("zzmm"));
+		user.setXl(request.getParameter("Xl"));
+		user.setZc(request.getParameter("Zc"));
+		user.setZw(request.getParameter("Zw"));
+		user.setZy(request.getParameter("Zy"));
+		user.setZzmm(request.getParameter("Zzmm"));
 
 		UserService service = new UserServiceImpl(new OptTemplate());
 		ResultMapper mapper = service.register(user);

@@ -22,4 +22,24 @@
 		<servlet-name>Reg1</servlet-name>
 		<url-pattern>/Reg1</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>Login</display-name>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.xal.ors.servlet.Login</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>CheckUserExist</display-name>
+		<servlet-name>CheckUserExist</servlet-name>
+		<servlet-class>com.xal.ors.servlet.CheckUserExist</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckUserExist</servlet-name>
+		<url-pattern>/CheckUserExist</url-pattern>
+	</servlet-mapping>
 </web-app>

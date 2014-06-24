@@ -117,8 +117,8 @@ body {
 				return;
 
 			$.ajax({
-				url : 'Reg1',
-				type : "POST",
+				url : 'Login',
+				type : "GET",
 				dataType : "json"
 			}).done(function(data) {
 				if (!data.success) {

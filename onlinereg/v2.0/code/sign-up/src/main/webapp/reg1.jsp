@@ -64,6 +64,12 @@ body {
 	font-size: 12px;
 	font-weight: normal;
 }
+
+#addFrm_ShowChkUser {
+	color: red;
+	font-size: 12px;
+	font-weight: normal;
+}
 </style>
 </head>
 <body>
@@ -76,44 +82,45 @@ body {
 						<b>《职业卫生安全评价，从入门到精通》网上报名</b>
 					</div>
 					<div class="panel-body">
-						<form id="addFrm" class="form-horizontal" role="form"
-							data-url="reg.do">
+						<form id="addFrm" class="form-horizontal" role="form" data-url="Reg1">
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+								<label for="addFrm_UserName" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>用户名</label>
 								<div class="col-sm-4">
-									<input type="password" class="form-control" id="addFrm_zc"
-										name="zc" placeholder="用户名">
+									<input type="text" class="form-control" id="addFrm_UserName"
+										name="UserName" placeholder="用户名">
 								</div>
 								<div class="col-sm-2">
-									<button type="button" class="btn btn-primary">检测用户名</button>
+									<button id='btn_chk_user' type="button" class="btn btn-primary">检测用户名</button>
 								</div>
-								<div class="col-sm-4"></div>
+								<div class="col-sm-4">
+									<label id="addFrm_ShowChkUser"></label>
+								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+								<label for="addFrm_UserPass" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>登陆密码</label>
 								<div class="col-sm-4">
-									<input type="password" class="form-control" id="addFrm_zc"
-										name="zc" placeholder="登陆密码">
+									<input type="password" class="form-control"
+										id="addFrm_UserPass" name="UserPass" placeholder="登陆密码">
 								</div>
-								<label for="addFrm_lxdh" class="col-sm-2 control-label"><span
+								<label for="addFrm_UserPass2" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>确认密码</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_lxdh"
-										name="lxdh" placeholder="确认密码">
+									<input type="password" class="form-control"
+										id="addFrm_UserPass2" name="UserPass2" placeholder="确认密码">
 								</div>
 							</div>
 							<div class="form-group"></div>
 							<div class="form-group"></div>
 							<div class="form-group">
-								<label for="addFrm_xm" class="col-sm-2 control-label"><span
+								<label for="addFrm_RealName" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>姓名</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_xm"
-										name="xm" placeholder="姓名">
+									<input type="text" class="form-control" id="addFrm_RealName"
+										name="RealName" placeholder="姓名">
 								</div>
-								<label for="addFrm_xb" class="col-sm-2 control-label">性别</label>
+								<label for="addFrm_Sex" class="col-sm-2 control-label">性别</label>
 								<div class="col-sm-4">
 									<!--div class="radio radio-inline">
 											<label>
@@ -125,22 +132,22 @@ body {
 												<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">女
 											</label>
 										</div-->
-									<select class="form-control" id="addFrm_xb" name="xb">
+									<select class="form-control" id="addFrm_Sex" name="Sex">
 										<option value="男">男</option>
 										<option value="女">女</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_sfzh" class="col-sm-2 control-label"><span
+								<label for="addFrm_Idcard" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>身份证号</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_sfzh"
-										name='sfzh' placeholder="身份证号">
+									<input type="text" class="form-control" id="addFrm_Idcard"
+										name='Idcard' placeholder="身份证号">
 								</div>
-								<label for="addFrm_zzmm" class="col-sm-2 control-label">政治面貌</label>
+								<label for="addFrm_Zzmm" class="col-sm-2 control-label">政治面貌</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_zzmm" name="zzmm">
+									<select class="form-control" id="addFrm_Zzmm" name="Zzmm">
 										<option value="中共党员">中共党员</option>
 										<option value="中共预备党员">中共预备党员</option>
 										<option value="共青团员">共青团员</option>
@@ -159,9 +166,9 @@ body {
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_mz" class="col-sm-2 control-label">民族</label>
+								<label for="addFrm_Mz" class="col-sm-2 control-label">民族</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_mz" name="mz">
+									<select class="form-control" id="addFrm_Mz" name="Mz">
 										<option value="汉族">汉族</option>
 										<option value="蒙古族">蒙古族</option>
 										<option value="彝族">彝族</option>
@@ -220,60 +227,60 @@ body {
 										<option value="基诺族">基诺族</option>
 									</select>
 								</div>
-								<label for="addFrm_jg" class="col-sm-2 control-label">籍贯</label>
+								<label for="addFrm_Jg" class="col-sm-2 control-label">籍贯</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_jg" name="jg">
-										<option value="111">北京</option>
-										<option value="112">天津</option>
-										<option value="113">河北</option>
-										<option value="114">山西</option>
-										<option value="115">内蒙古</option>
-										<option value="121">辽宁</option>
-										<option value="122">吉林</option>
-										<option value="123">黑龙江</option>
-										<option value="131">上海</option>
-										<option value="132">江苏</option>
-										<option value="133">浙江</option>
-										<option value="134">安徽</option>
-										<option value="135">福建</option>
-										<option value="136">江西</option>
-										<option value="137">山东</option>
-										<option value="141" selected>河南</option>
-										<option value="142">湖北</option>
-										<option value="143">湖南</option>
-										<option value="144">广东</option>
-										<option value="145">广西</option>
-										<option value="146">海南</option>
-										<option value="150">重庆</option>
-										<option value="151">四川</option>
-										<option value="152">贵州</option>
-										<option value="153">云南</option>
-										<option value="154">西藏</option>
-										<option value="161">陕西</option>
-										<option value="162">甘肃</option>
-										<option value="163">青海</option>
-										<option value="164">宁夏</option>
-										<option value="165">新疆</option>
-										<option value="171">台湾</option>
-										<option value="172">香港</option>
-										<option value="173">澳门</option>
+									<select class="form-control" id="addFrm_Jg" name="Jg">
+										<option value="北京">北京</option>
+										<option value="天津">天津</option>
+										<option value="河北">河北</option>
+										<option value="山西">山西</option>
+										<option value="内蒙古">内蒙古</option>
+										<option value="辽宁">辽宁</option>
+										<option value="吉林">吉林</option>
+										<option value="黑龙江">黑龙江</option>
+										<option value="上海">上海</option>
+										<option value="江苏">江苏</option>
+										<option value="浙江">浙江</option>
+										<option value="安徽">安徽</option>
+										<option value="福建">福建</option>
+										<option value="江西">江西</option>
+										<option value="山东">山东</option>
+										<option value="河南" selected>河南</option>
+										<option value="湖北">湖北</option>
+										<option value="湖南">湖南</option>
+										<option value="广东">广东</option>
+										<option value="广西">广西</option>
+										<option value="海南">海南</option>
+										<option value="重庆">重庆</option>
+										<option value="四川">四川</option>
+										<option value="贵州">贵州</option>
+										<option value="云南">云南</option>
+										<option value="西藏">西藏</option>
+										<option value="陕西">陕西</option>
+										<option value="甘肃">甘肃</option>
+										<option value="青海">青海</option>
+										<option value="宁夏">宁夏</option>
+										<option value="新疆">新疆</option>
+										<option value="台湾">台湾</option>
+										<option value="香港">香港</option>
+										<option value="澳门">澳门</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_byyx" class="col-sm-2 control-label"><span
+								<label for="addFrm_Byyx" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>毕业院校</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_byyx"
-										name="byyx" placeholder="毕业院校">
+									<input type="text" class="form-control" id="addFrm_Byyx"
+										name="Byyx" placeholder="毕业院校">
 								</div>
-								<label for="addFrm_shadow_bysj" class="col-sm-2 control-label"><span
+								<label for="addFrm_shadow_Bysj" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>毕业时间</label>
 								<div class="col-sm-4">
 									<div class="input-group date form_date col-md-12" data-date=""
-										data-date-format="yyyy-mm-dd" data-link-field="addFrm_bysj"
+										data-date-format="yyyy-mm-dd" data-link-field="addFrm_Bysj"
 										data-link-format="yyyy-mm-dd">
-										<input class="form-control" id='addFrm_shadow_bysj'
+										<input class="form-control" id='addFrm_shadow_Bysj'
 											type="text" value="" readonly placeholder="毕业时间"> <span
 											class="input-group-addon"><span
 											class="glyphicon glyphicon-remove"></span> </span> <span
@@ -281,80 +288,80 @@ body {
 											class="glyphicon glyphicon-calendar"></span> </span>
 									</div>
 									<input type="hidden" data-olx-type="olx.form.input"
-										class="form-control" id="addFrm_bysj" name="bysj"
+										class="form-control" id="addFrm_Bysj" name="Bysj"
 										placeholder="毕业时间">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_xl" class="col-sm-2 control-label">学历</label>
+								<label for="addFrm_Xl" class="col-sm-2 control-label">学历</label>
 								<div class="col-sm-4">
-									<select class="form-control" id="addFrm_xl" name='xl'>
-										<option value="5">大专</option>
-										<option value="4" selected>本科</option>
-										<option value="3">硕士</option>
-										<option value="1">博士</option>
-										<option value="10">MBA</option>
-										<option value="11">EMBA</option>
-										<option value="12">中专</option>
-										<option value="13">中技</option>
-										<option value="7">高中</option>
-										<option value="9">初中</option>
-										<option value="8">其他</option>
+									<select class="form-control" id="addFrm_Xl" name='Xl'>
+										<option value="大专">大专</option>
+										<option value="本科" selected>本科</option>
+										<option value="硕士">硕士</option>
+										<option value="博士">博士</option>
+										<option value="MBA">MBA</option>
+										<option value="EMBA">EMBA</option>
+										<option value="中专">中专</option>
+										<option value="中技">中技</option>
+										<option value="高中">高中</option>
+										<option value="初中">初中</option>
+										<option value="其他">其他</option>
 									</select>
 								</div>
-								<label for="addFrm_zy" class="col-sm-2 control-label"><span
+								<label for="addFrm_Zy" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>专业</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_zy"
-										name="zy" placeholder="专业">
+									<input type="text" class="form-control" id="addFrm_Zy"
+										name="Zy" placeholder="专业">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_gzdw" class="col-sm-2 control-label"><span
+								<label for="addFrm_Gzdw" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>工作单位</label>
 								<div class="col-sm-4">
-									<input type="password" class="form-control" id="addFrm_gzdw"
-										name="gzdw" placeholder="工作单位">
+									<input type="text" class="form-control" id="addFrm_Gzdw"
+										name="Gzdw" placeholder="工作单位">
 								</div>
-								<label for="addFrm_szbm" class="col-sm-2 control-label"><span
+								<label for="addFrm_Szbm" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>所在部门</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_szbm"
-										name="szbm" placeholder="所在部门">
+									<input type="text" class="form-control" id="addFrm_Szbm"
+										name="Szbm" placeholder="所在部门">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_cszy" class="col-sm-2 control-label"><span
+								<label for="addFrm_Cszy" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>从事专业</label>
 								<div class="col-sm-4">
-									<input type="password" class="form-control" id="addFrm_cszy"
-										name="cszy" placeholder="从事专业">
+									<input type="text" class="form-control" id="addFrm_Cszy"
+										name="Cszy" placeholder="从事专业">
 								</div>
-								<label for="addFrm_zw" class="col-sm-2 control-label">职位</label>
+								<label for="addFrm_Zw" class="col-sm-2 control-label">职位</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_zw"
-										name="zw" placeholder="职位">
+									<input type="text" class="form-control" id="addFrm_Zw"
+										name="Zw" placeholder="职位">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_zc" class="col-sm-2 control-label"><span
+								<label for="addFrm_Zc" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>职称</label>
 								<div class="col-sm-4">
-									<input type="password" class="form-control" id="addFrm_zc"
-										name="zc" placeholder="职称">
+									<input type="text" class="form-control" id="addFrm_Zc"
+										name="Zc" placeholder="职称">
 								</div>
-								<label for="addFrm_lxdh" class="col-sm-2 control-label"><span
+								<label for="addFrm_Lxdh" class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>联系电话</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="addFrm_lxdh"
-										name="lxdh" placeholder="联系电话">
+									<input type="text" class="form-control" id="addFrm_Lxdh"
+										name="Lxdh" placeholder="联系电话">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="addFrm_lxdz" class="col-sm-2 control-label">联系地址</label>
+								<label for="addFrm_Lxdz" class="col-sm-2 control-label">联系地址</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control" id="addFrm_lxdz"
-										name="lxdz" placeholder="联系地址">
+									<input type="text" class="form-control" id="addFrm_Lxdz"
+										name="Lxdz" placeholder="联系地址">
 								</div>
 							</div>
 
@@ -451,15 +458,78 @@ body {
 			$('#addFrm_sfzh').val(sfzh);*/
 		});
 
+		function valiFrm(){
+			var username = $('#addFrm_UserName').val().trim();
+			if(!username.length){
+				return '用户名不能为空。';
+			}
+			var userpass = $('#addFrm_UserPass').val().trim();
+			if(!userpass){
+				return '登陆密码不能为空。';
+			}
+			var userpass2 = $('#addFrm_UserPass2').val().trim();
+			if(userpass != userpass2){
+				return '登陆密码与确认密码不一致。';
+			}
+		}
+
 		$('#btn_submit').click(function() {
-			$('#addFrm').olxForm('submit', [ valiAddFrm, function(valiResu) {
+			var valiResu = valiFrm();
+			if(valiResu) {
+				$('#frm_ShowErr').css('display', 'block');
+
 				if ('string' === typeof valiResu) {
-					return alert(valiResu);
+					return $('#frm_ShowErr').text(valiResu);
 				}
-				$('#addFrm_' + valiResu[1]).olxFormInput('validate', valiResu);
-			}, function(data) {
-				console.log(data)
-			} ]);
+				$('#frm_ShowErr').text(valiResu[0]);
+				return;
+			}
+
+			var data = $('#addFrm').serializeObjectForm ();
+			data.ts = (new Date()).valueOf();
+
+			var vals = [];
+			$('#costItem input[type="checkbox"]:checked').each(function(i, checkbox){
+				vals.push($(checkbox).val());
+			});
+			data.CostItem = vals.toString();
+
+			$.ajax({
+				url : 'Reg1',
+				type : "POST",
+				dataType : "json",
+				data: data
+			}).done(function(data) {
+				if(!data.success){
+					var valiResu = data.msg;
+					$('#frm_ShowErr').css('display', 'none');
+					$('#frm_ShowErr').css('display', 'block');
+
+					if ('string' === typeof valiResu) {
+						return $('#frm_ShowErr').text(valiResu);
+					}
+					$('#frm_ShowErr').text(valiResu[0]);
+					return;
+				}
+				alert('注册成功');
+				location.reload();
+			});
+		});
+
+		$('#btn_chk_user').click(function() {
+			console.log('检测用户名是否存在');
+			$.ajax({
+				url : 'CheckUserExist',
+				type : "GET",
+				dataType : "json",
+				data: {
+					UserName: $('#addFrm_UserName').val(),
+					ts: (new Date()).valueOf()
+				}
+			}).done(function(data) {
+				$('#addFrm_ShowChkUser').css('display', 'block');
+				$('#addFrm_ShowChkUser').text(data.success ? '用户名已经存在，请更换' : '可以正常注册');
+			});
 		});
 	</script>
 </body>
