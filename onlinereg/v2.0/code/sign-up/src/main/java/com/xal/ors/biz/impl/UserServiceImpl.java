@@ -185,8 +185,24 @@ public class UserServiceImpl implements UserService {
 		return 1 == users.size() ? users.get(0) : null;
 	}
 
+	@SuppressWarnings("unchecked")
+	public User login2(Integer id, String password) {
+		String sql = "select * from s_user where id=?";
+		Object[] obj = { id };
+
+		List<User> users = (List<User>) optTemplate.query(sql, obj,
+				new UserDAOObjectMapper());
+
+		if (null == users || 0 == users.size())
+			return null;
+
+		User user = users.get(0);
+
+		return password.equals(user.getUserPass()) ? user : null;
+	}
+
 	public boolean changePass(User user, String newPass) {
-		User user1 = login(user.getUserName(), user.getUserPass());
+		User user1 = login2(user.getId(), user.getUserPass());
 
 		if (null == user1)
 			return false;

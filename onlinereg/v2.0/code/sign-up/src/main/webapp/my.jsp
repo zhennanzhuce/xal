@@ -618,7 +618,11 @@ body {
 				dataType : "json",
 				data: frmObj
 			}).done(function(data) {
-				if(data.success) return alert('密码修改成功!');
+				if(data.success) {
+					$('#frm2_ShowErr').parent().css('display', 'none');
+					alert('密码修改成功!');
+					return;
+				}
 				$('#frm2_ShowErr').parent().css('display', 'block');
 				$('#frm2_ShowErr').text('密码修改失败，请确认输入是否正确。');
 			});

@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
@@ -31,7 +32,15 @@ public class ChangePass extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("application/json");
 
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("id");
+		if (null == id) {
+			response.sendRedirect("index.jsp");
+			return;
+		}
+
 		User user = new User();
+		user.setId((Integer) id);
 		user.setUserName(request.getParameter("UserName"));
 		user.setUserPass(request.getParameter("OldPass"));
 
