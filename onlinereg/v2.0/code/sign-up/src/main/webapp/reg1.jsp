@@ -371,7 +371,7 @@ body {
 								<label class="col-sm-2 control-label"><span
 									class="olx-form-required">*</span>项目选择</label>
 								<div class="col-sm-10">
-									<table class="table table-bordered" id='costItem'>
+									<table class="table table-bordered table-hover table-condensed table-striped" id='costItem'>
 										<thead>
 											<tr>
 												<th>编号</th>
