@@ -60,9 +60,12 @@ body {
 <body>
 
 	<section class="container">
+		<div style="display: block; text-align: center; color: green;"><h2>技术点亮人生，学习改变命运。</h2></div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
 	<form id="logFrm" role="form" onsubmit="return false;"
 		data-url="step0.do">
-		<h3>《安全评价从入门到精通》</h3>
+		<h3>《安全评价从入门到精通》网上报名</h3>
 		<div class="form-group">
 			<input id="logFrm_UserName" name="UserName" type="text"
 				class="form-control" placeholder="用户名">
