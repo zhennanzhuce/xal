@@ -1,6 +1,5 @@
 package com.xal.ors.servlet;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -49,13 +48,12 @@ public class ExportExcel extends HttpServlet {
 		// 设置response的Header
 		response.addHeader("Content-Disposition", "attachment;filename="
 				+ new String("user.xls"));
-		response.addHeader("Content-Length", "" + wb.getBytes().length);
-		OutputStream toClient = new BufferedOutputStream(
-				response.getOutputStream());
+		OutputStream toClient = response.getOutputStream();
 		response.setContentType("application/vnd.ms-excel;charset=utf-8");
-		toClient.write(wb.getBytes());
-		toClient.flush();
+
+		wb.write(toClient);
 		toClient.close();
+		response.flushBuffer();
 	}
 
 	private List<User> getData1() {
