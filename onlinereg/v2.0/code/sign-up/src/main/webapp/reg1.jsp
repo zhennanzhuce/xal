@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<title>《职业卫生安全评价，从入门到精通》网上报名</title>
+<title>《安全评价从入门到精通》网上报名</title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
@@ -79,7 +79,7 @@ body {
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>《职业卫生安全评价，从入门到精通》网上报名</b>
+						<b>《安全评价从入门到精通》网上报名</b>
 					</div>
 					<div class="panel-body">
 						<form id="addFrm" class="form-horizontal" role="form" data-url="Reg1">

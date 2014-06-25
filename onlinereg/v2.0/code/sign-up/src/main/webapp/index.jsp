@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>《职业卫生安全评价，从入门到精通》网上报名</title>
+<title>《安全评价从入门到精通》网上报名</title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
@@ -62,7 +62,7 @@ body {
 	<section class="container">
 	<form id="logFrm" role="form" onsubmit="return false;"
 		data-url="step0.do">
-		<h3>《职业卫生安全评价，从入门到精通》</h3>
+		<h3>《安全评价从入门到精通》</h3>
 		<div class="form-group">
 			<input id="logFrm_UserName" name="UserName" type="text"
 				class="form-control" placeholder="用户名">

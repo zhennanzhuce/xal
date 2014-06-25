@@ -121,13 +121,13 @@ body {
 					<strong>提示：</strong><%
 						switch(user.getIsPass()){
 						case 0:
-							out.print("《职业卫生安全评价，从入门到精通》审核正在进行中。");
+							out.print("《安全评价从入门到精通》审核正在进行中。");
 							break;
 						case 1:
-							out.print("恭喜你，《职业卫生安全评价，从入门到精通》报名成功。");
+							out.print("恭喜你，《安全评价从入门到精通》报名成功。");
 							break;
 						case 2:
-							out.print("《职业卫生安全评价，从入门到精通》审核未通过。");
+							out.print("《安全评价从入门到精通》审核未通过。");
 							break;
 						}
 					%>

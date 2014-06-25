@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<title>《职业卫生安全评价，从入门到精通》网上报名</title>
+<title>《安全评价从入门到精通》网上报名</title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
@@ -136,7 +136,7 @@
 				<div class="panel panel-default table-responsive">
 					<div class="panel-heading">
 						<div class="btn-group">
-							<b>《职业卫生安全评价，从入门到精通》报名人员</b>
+							<b>《安全评价从入门到精通》报名人员</b>
 						</div>
 					</div>
 
