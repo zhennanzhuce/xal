@@ -128,6 +128,12 @@ public class ExportExcel extends HttpServlet {
 		cell = row.createCell((short) 3);
 		cell.setCellValue("费用");
 		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("说明");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 5);
+		cell.setCellValue("详细");
+		cell.setCellStyle(style);
 
 		// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
 		List<CostItem> list = getData2();
@@ -141,6 +147,8 @@ public class ExportExcel extends HttpServlet {
 			row.createCell((short) 2).setCellValue(stu.getDayNum());
 			cell = row.createCell((short) 3);
 			cell.setCellValue(stu.getCost());
+			row.createCell((short) 4).setCellValue(stu.getComment());
+			row.createCell((short) 5).setCellValue(stu.getComment2());
 		}
 	}
 }
