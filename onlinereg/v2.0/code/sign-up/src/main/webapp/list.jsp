@@ -64,6 +64,9 @@
 #costItem {
 	font-size: 12px;
 }
+#table1 {
+	font-size: 12px;
+}
 </style>
 </head>
 <body>
