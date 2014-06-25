@@ -439,8 +439,14 @@ body {
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="addFrm_Zgzs" class="col-sm-2 control-label"><span
+									class="olx-form-required">*</span>资格证书</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="addFrm_Zgzs"
+										name="Zgzs" placeholder="资格证书" value="<%=user.getZgzs() %>">
+								</div>
 								<label for="addFrm_Lxdz" class="col-sm-2 control-label">联系地址</label>
-								<div class="col-sm-10">
+								<div class="col-sm-4">
 									<input type="text" class="form-control" id="addFrm_Lxdz"
 										name="Lxdz" placeholder="联系地址" value="<%=user.getLxdz() %>">
 								</div>
@@ -570,6 +576,12 @@ body {
 				vals.push($(checkbox).val());
 			});
 			data.CostItem = vals.toString();
+
+			if('' == data.CostItem){
+				$('#frm_ShowErr').css('display', 'block');
+				return $('#frm_ShowErr').text('请选择收费项目');
+			}
+
 
 			$.ajax({
 				url : 'EditInfo',

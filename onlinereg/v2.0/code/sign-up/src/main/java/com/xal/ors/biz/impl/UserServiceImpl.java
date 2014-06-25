@@ -99,6 +99,13 @@ public class UserServiceImpl implements UserService {
 			return mapper;
 		}
 
+		user.setZgzs(user.getZgzs().trim());
+		if ("".equals(user.getZgzs())) {
+			String[] msg = { "资格证书不能为空", "Zgzs" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		User exist = isExist(user.getUserName());
 		if (null != exist) {
 			String[] msg = { "用户名已经存在", "UserName" };
@@ -109,8 +116,8 @@ public class UserServiceImpl implements UserService {
 		String sql = "insert into s_user (username, userpass, realname, sex, idcard, "
 				+ "zzmm, mz, jg, byyx, bysj, "
 				+ "xl, zy, gzdw, szbm, cszy, "
-				+ "zw, zc, lxdh, lxdz, regtime, costitem, isPass) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "zw, zc, lxdh, lxdz, regtime, costitem, isPass, zgzs) "
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		user.setRegtime(new Date());
 		user.setIsPass(0);
@@ -121,7 +128,7 @@ public class UserServiceImpl implements UserService {
 				user.getBysj(), user.getXl(), user.getZy(), user.getGzdw(),
 				user.getSzbm(), user.getCszy(), user.getZw(), user.getZc(),
 				user.getLxdh(), user.getLxdz(), user.getRegtime(),
-				user.getCostItem(), user.getIsPass() };
+				user.getCostItem(), user.getIsPass(), user.getZgzs() };
 		boolean result = optTemplate.update(sql, obj, false);
 
 		if (!result) {
@@ -229,6 +236,13 @@ public class UserServiceImpl implements UserService {
 			return mapper;
 		}
 
+		user.setZgzs(user.getZgzs().trim());
+		if ("".equals(user.getZgzs())) {
+			String[] msg = { "资格证书不能为空", "Zgzs" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		User user1 = findById(user.getId().toString());
 		if (null == user1) {
 			String[] msg = { "修改失败", "" };
@@ -245,14 +259,14 @@ public class UserServiceImpl implements UserService {
 		String sql = "update s_user set realname=?, sex=?, idcard=?, "
 				+ "zzmm=?, mz=?, jg=?, byyx=?, bysj=?, "
 				+ "xl=?, zy=?, gzdw=?, szbm=?, cszy=?, "
-				+ "zw=?, zc=?, lxdh=?, lxdz=?, costitem=? where id=?";
+				+ "zw=?, zc=?, lxdh=?, lxdz=?, costitem=?, zgzs=? where id=?";
 
 		Object[] obj = { user.getRealName(), user.getSex(), user.getIdcard(),
 				user.getZzmm(), user.getMz(), user.getJg(), user.getByyx(),
 				user.getBysj(), user.getXl(), user.getZy(), user.getGzdw(),
 				user.getSzbm(), user.getCszy(), user.getZw(), user.getZc(),
 				user.getLxdh(), user.getLxdz(), user.getCostItem(),
-				user.getId() };
+				user.getZgzs(), user.getId() };
 
 		boolean result = optTemplate.update(sql, obj, false);
 
@@ -390,6 +404,7 @@ class UserDAOObjectMapper implements ObjectMapper {
 			user.setZy(rs.getString("zy"));
 			user.setZzmm(rs.getString("zzmm"));
 			user.setIsPass(rs.getInt("isPass"));
+			user.setZgzs(rs.getString("zgzs"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

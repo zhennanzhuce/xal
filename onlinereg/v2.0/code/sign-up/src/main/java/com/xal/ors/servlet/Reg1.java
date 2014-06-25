@@ -75,6 +75,7 @@ public class Reg1 extends HttpServlet {
 		user.setZw(request.getParameter("Zw"));
 		user.setZy(request.getParameter("Zy"));
 		user.setZzmm(request.getParameter("Zzmm"));
+		user.setZgzs(request.getParameter("Zgzs"));
 
 		UserService service = new UserServiceImpl(new OptTemplate());
 		ResultMapper mapper = service.register(user);

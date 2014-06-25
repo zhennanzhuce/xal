@@ -31,6 +31,16 @@ public class User {
 	private String costItem;
 	private Integer isPass;
 
+	private String zgzs;
+
+	public String getZgzs() {
+		return zgzs;
+	}
+
+	public void setZgzs(String zgzs) {
+		this.zgzs = zgzs;
+	}
+
 	public Integer getIsPass() {
 		return isPass;
 	}
