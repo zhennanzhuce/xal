@@ -92,4 +92,14 @@
 		<servlet-name>RemoveUser</servlet-name>
 		<url-pattern>/RemoveUser</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ExportExcel</display-name>
+		<servlet-name>ExportExcel</servlet-name>
+		<servlet-class>com.xal.ors.servlet.ExportExcel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExportExcel</servlet-name>
+		<url-pattern>/ExportExcel</url-pattern>
+	</servlet-mapping>
 </web-app>

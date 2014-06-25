@@ -314,6 +314,7 @@
 
 		function exportExcel(){
 			console.log('导出Excel');
+			location.href = 'ExportExcel';
 		}
 	</script>
 </body>
