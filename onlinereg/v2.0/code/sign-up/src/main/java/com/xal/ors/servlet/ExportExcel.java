@@ -141,9 +141,12 @@ public class ExportExcel extends HttpServlet {
 		cell.setCellValue("联系电话");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 18);
-		cell.setCellValue("联系地址");
+		cell.setCellValue("资格证书");
 		cell.setCellStyle(style);
 		cell = row.createCell((short) 19);
+		cell.setCellValue("联系地址");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 20);
 		cell.setCellValue("项目编号");
 		cell.setCellStyle(style);
 
@@ -175,8 +178,9 @@ public class ExportExcel extends HttpServlet {
 			row.createCell((short) 15).setCellValue(stu.getZw());
 			row.createCell((short) 16).setCellValue(stu.getZc());
 			row.createCell((short) 17).setCellValue(stu.getLxdh());
-			row.createCell((short) 18).setCellValue(stu.getLxdz());
-			row.createCell((short) 19).setCellValue(stu.getCostItem());
+			row.createCell((short) 18).setCellValue(stu.getZgzs());
+			row.createCell((short) 19).setCellValue(stu.getLxdz());
+			row.createCell((short) 20).setCellValue(stu.getCostItem());
 		}
 	}
 

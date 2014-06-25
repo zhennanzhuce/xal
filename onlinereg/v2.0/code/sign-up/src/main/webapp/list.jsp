@@ -185,6 +185,7 @@
 								<th>职位</th>
 								<th>职称</th>
 								<th>联系电话</th>
+								<th>资格证书</th>
 								<th>联系地址</th>
 								<th>项目编号</th>
 								<th>审核</th>
@@ -225,6 +226,7 @@
 								<td><%=item.getZw() %></td>
 								<td><%=item.getZc() %></td>
 								<td><%=item.getLxdh() %></td>
+								<td><%=item.getZgzs() %></td>
 								<td><%=item.getLxdz() %></td>
 								<td><%=item.getCostItem() %></td>
 								<td><%
