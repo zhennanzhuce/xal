@@ -48,7 +48,19 @@ public class EditInfo extends HttpServlet {
 		try {
 			user.setBysj(sdf.parse(request.getParameter("Bysj")));
 		} catch (ParseException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			ResultMapper mapper = new ResultMapper();
+			String[] msg = { "毕业时间不能为空", "Bysj" };
+			mapper.setMsg(msg);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(mapper);
+
+			PrintWriter out = response.getWriter();
+			out.write(result);
+			out.flush();
+			out.close();
+			return;
 		}
 		user.setByyx(request.getParameter("Byyx"));
 		user.setCostItem(request.getParameter("CostItem"));

@@ -512,12 +512,18 @@ body {
 					return;
 				}
 				alert('注册成功');
-				location.reload();
+				location.href = 'reg1.jsp?ts='+ (new Date()).valueOf();
 			});
 		});
 
 		$('#btn_chk_user').click(function() {
 			console.log('检测用户名是否存在');
+			 if(!/^[a-zA-Z][\w]{3,15}$/.test($('#addFrm_UserName').val())){
+				$('#addFrm_ShowChkUser').css('display', 'block');
+				$('#addFrm_ShowChkUser').text('仅支持4-16位数字、字母（大小写）或下划线。');
+				$('#addFrm_UserName').focus();
+				return;
+			}
 			$.ajax({
 				url : 'CheckUserExist',
 				type : "GET",

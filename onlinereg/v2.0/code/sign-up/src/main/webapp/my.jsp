@@ -589,7 +589,7 @@ body {
 					return;
 				}
 				alert('修改成功');
-				location.reload();
+				location.href = 'my.jsp?ts='+ (new Date()).valueOf();
 			});
 		});
 
@@ -621,6 +621,7 @@ body {
 				if(data.success) {
 					$('#frm2_ShowErr').parent().css('display', 'none');
 					alert('密码修改成功!');
+					location.href = 'my.jsp?ts='+ (new Date()).valueOf();
 					return;
 				}
 				$('#frm2_ShowErr').parent().css('display', 'block');

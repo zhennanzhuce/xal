@@ -36,6 +36,69 @@ public class UserServiceImpl implements UserService {
 			return mapper;
 		}
 
+		user.setRealName(user.getRealName().trim());
+		if ("".equals(user.getRealName())) {
+			String[] msg = { "姓名不能为空", "RealName" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setIdcard(user.getIdcard().trim());
+		if ("".equals(user.getIdcard())) {
+			String[] msg = { "身份证号不能为空", "Idcard" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setByyx(user.getByyx().trim());
+		if ("".equals(user.getByyx())) {
+			String[] msg = { "毕业院校不能为空", "Byyx" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setZy(user.getZy().trim());
+		if ("".equals(user.getZy())) {
+			String[] msg = { "专业不能为空", "Zy" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setGzdw(user.getGzdw().trim());
+		if ("".equals(user.getGzdw())) {
+			String[] msg = { "工作单位不能为空", "Gzdw" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setSzbm(user.getSzbm().trim());
+		if ("".equals(user.getSzbm())) {
+			String[] msg = { "所在部门不能为空", "Szbm" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setCszy(user.getCszy().trim());
+		if ("".equals(user.getCszy())) {
+			String[] msg = { "从事专业不能为空", "Cszy" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setZc(user.getZc().trim());
+		if ("".equals(user.getZc())) {
+			String[] msg = { "职称不能为空", "Zc" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setLxdh(user.getLxdh().trim());
+		if ("".equals(user.getLxdh())) {
+			String[] msg = { "联系电话不能为空", "Lxdh" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		User exist = isExist(user.getUserName());
 		if (null != exist) {
 			String[] msg = { "用户名已经存在", "UserName" };
@@ -102,6 +165,69 @@ public class UserServiceImpl implements UserService {
 	public ResultMapper editItem(User user) {
 		ResultMapper mapper = new ResultMapper();
 		mapper.setSuccess(false);
+
+		user.setRealName(user.getRealName().trim());
+		if ("".equals(user.getRealName())) {
+			String[] msg = { "姓名不能为空", "RealName" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setIdcard(user.getIdcard().trim());
+		if ("".equals(user.getIdcard())) {
+			String[] msg = { "身份证号不能为空", "Idcard" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setByyx(user.getByyx().trim());
+		if ("".equals(user.getByyx())) {
+			String[] msg = { "毕业院校不能为空", "Byyx" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setZy(user.getZy().trim());
+		if ("".equals(user.getZy())) {
+			String[] msg = { "专业不能为空", "Zy" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setGzdw(user.getGzdw().trim());
+		if ("".equals(user.getGzdw())) {
+			String[] msg = { "工作单位不能为空", "Gzdw" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setSzbm(user.getSzbm().trim());
+		if ("".equals(user.getSzbm())) {
+			String[] msg = { "所在部门不能为空", "Szbm" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setCszy(user.getCszy().trim());
+		if ("".equals(user.getCszy())) {
+			String[] msg = { "从事专业不能为空", "Cszy" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setZc(user.getZc().trim());
+		if ("".equals(user.getZc())) {
+			String[] msg = { "职称不能为空", "Zc" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
+		user.setLxdh(user.getLxdh().trim());
+		if ("".equals(user.getLxdh())) {
+			String[] msg = { "联系电话不能为空", "Lxdh" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
 
 		User user1 = findById(user.getId().toString());
 		if (null == user1) {
