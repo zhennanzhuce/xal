@@ -16,8 +16,12 @@ import com.xal.ors.biz.UserService;
 import com.xal.ors.biz.impl.UserServiceImpl;
 import com.xal.ors.util.OptTemplate;
 
-public class Verify extends HttpServlet {
-	private static final long serialVersionUID = -7242279630539832052L;
+public class RemoveUser extends HttpServlet {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -3449553758074087715L;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -39,10 +43,9 @@ public class Verify extends HttpServlet {
 		}
 
 		String ids = request.getParameter("ids");
-		Integer isPass = Integer.valueOf(request.getParameter("isPass"));
 
 		UserService service = new UserServiceImpl(new OptTemplate());
-		boolean passUser = service.passUser(ids, isPass);
+		boolean passUser = service.removeItems(ids);
 
 		ResultMapper mapper = new ResultMapper();
 		mapper.setSuccess(passUser);

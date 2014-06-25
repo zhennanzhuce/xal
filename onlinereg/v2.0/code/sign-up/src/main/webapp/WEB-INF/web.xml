@@ -72,4 +72,24 @@
 		<servlet-name>EditInfo</servlet-name>
 		<url-pattern>/EditInfo</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>MLogin</display-name>
+		<servlet-name>MLogin</servlet-name>
+		<servlet-class>com.xal.ors.servlet.MLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MLogin</servlet-name>
+		<url-pattern>/MLogin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>RemoveUser</display-name>
+		<servlet-name>RemoveUser</servlet-name>
+		<servlet-class>com.xal.ors.servlet.RemoveUser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveUser</servlet-name>
+		<url-pattern>/RemoveUser</url-pattern>
+	</servlet-mapping>
 </web-app>

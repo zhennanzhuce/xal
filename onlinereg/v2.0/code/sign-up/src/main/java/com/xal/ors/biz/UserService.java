@@ -18,6 +18,8 @@ public interface UserService {
 
 	boolean removeItem(Integer id);
 
+	boolean removeItems(String ids);
+
 	boolean passUser(String ids, Integer isPass);
 
 	/**

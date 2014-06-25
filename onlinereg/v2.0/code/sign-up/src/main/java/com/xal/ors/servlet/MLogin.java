@@ -12,12 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
-import com.xal.ors.biz.UserService;
-import com.xal.ors.biz.impl.UserServiceImpl;
-import com.xal.ors.util.OptTemplate;
 
-public class Verify extends HttpServlet {
-	private static final long serialVersionUID = -7242279630539832052L;
+public class MLogin extends HttpServlet {
+
+	private static final long serialVersionUID = 8026012484091959303L;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -25,35 +23,33 @@ public class Verify extends HttpServlet {
 	}
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("application/json");
 
-		HttpSession session = request.getSession();
-		Object id = session.getAttribute("lv");
-		if (null == id || 2 != (Integer) id) {
-			response.sendRedirect("manage_login.jsp");
-			return;
-		}
+		PrintWriter out = response.getWriter();
 
-		String ids = request.getParameter("ids");
-		Integer isPass = Integer.valueOf(request.getParameter("isPass"));
-
-		UserService service = new UserServiceImpl(new OptTemplate());
-		boolean passUser = service.passUser(ids, isPass);
-
+		boolean login = login(request.getParameter("UserName"),
+				request.getParameter("UserPass"));
 		ResultMapper mapper = new ResultMapper();
-		mapper.setSuccess(passUser);
+		mapper.setSuccess(login);
 
 		Gson gson = new Gson();
 		String result = gson.toJson(mapper);
 
-		PrintWriter out = response.getWriter();
+		if (login) {
+			HttpSession session = request.getSession();
+			session.setAttribute("lv", 2);
+		}
+
 		out.write(result);
 		out.flush();
 		out.close();
 	}
 
+	private boolean login(String UserName, String UserPass) {
+		return ("admin".equals(UserName) && "xal123".equals(UserPass));
+	}
 }

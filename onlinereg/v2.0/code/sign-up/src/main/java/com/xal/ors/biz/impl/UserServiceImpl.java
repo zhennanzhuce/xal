@@ -271,6 +271,12 @@ public class UserServiceImpl implements UserService {
 		return optTemplate.update(sql, obj, false);
 	}
 
+	public boolean removeItems(String ids) {
+		String sql = "delete from s_user where id in (" + ids + ")";
+		Object[] obj = {};
+		return optTemplate.update(sql, obj, false);
+	}
+
 	@SuppressWarnings("unchecked")
 	public User login(String userName, String password) {
 		String sql = "select * from s_user where username=?";

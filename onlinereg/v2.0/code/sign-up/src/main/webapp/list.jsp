@@ -18,6 +18,12 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 
+	Object lv = session.getAttribute("lv");
+	if(null == lv || 2 != (Integer)lv){
+		response.sendRedirect("manage_login.jsp");
+		return;
+	}
+
 	String RealName = request.getParameter("RealName");
 	String Idcard = request.getParameter("Idcard");
 %>
@@ -283,6 +289,23 @@
 			});
 			var ids = vals.toString();
 			if('' == ids) return alert('请选择报名人员！');
+
+
+			var cm = confirm('您确定要执行删除操作吗？');
+			if(!cm) return;
+
+			$.ajax({
+				url : 'RemoveUser',
+				type : "POST",
+				dataType : "json",
+				data: {
+					ids: ids,
+					ts: (new Date()).valueOf()
+				}
+			}).done(function(data) {
+				alert('操作成功！');
+				location.reload();
+			});
 		});
 	</script>
 </body>
