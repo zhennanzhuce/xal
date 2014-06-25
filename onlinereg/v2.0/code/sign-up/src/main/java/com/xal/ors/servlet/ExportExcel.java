@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -36,6 +37,13 @@ public class ExportExcel extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("lv");
+		if (null == id || 2 != (Integer) id) {
+			response.sendRedirect("manage_login.jsp");
+			return;
+		}
 
 		// 第一步，创建一个webbook，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
@@ -90,6 +98,54 @@ public class ExportExcel extends HttpServlet {
 		cell = row.createCell((short) 3);
 		cell.setCellValue("身份证号");
 		cell.setCellStyle(style);
+		cell = row.createCell((short) 4);
+		cell.setCellValue("性别");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 5);
+		cell.setCellValue("政治面貌");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 6);
+		cell.setCellValue("民族");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 7);
+		cell.setCellValue("籍贯");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 8);
+		cell.setCellValue("毕业院校");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 9);
+		cell.setCellValue("毕业时间");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 10);
+		cell.setCellValue("学历");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 11);
+		cell.setCellValue("专业");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 12);
+		cell.setCellValue("工作单位");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 13);
+		cell.setCellValue("所在部门");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 14);
+		cell.setCellValue("从事专业");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 15);
+		cell.setCellValue("职位");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 16);
+		cell.setCellValue("职称");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 17);
+		cell.setCellValue("联系电话");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 18);
+		cell.setCellValue("联系地址");
+		cell.setCellStyle(style);
+		cell = row.createCell((short) 19);
+		cell.setCellValue("项目编号");
+		cell.setCellStyle(style);
 
 		// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
 		List<User> list = getData1();
@@ -103,6 +159,24 @@ public class ExportExcel extends HttpServlet {
 			row.createCell((short) 2).setCellValue(stu.getRealName());
 			cell = row.createCell((short) 3);
 			cell.setCellValue(stu.getIdcard());
+			row.createCell((short) 4).setCellValue(stu.getSex());
+			row.createCell((short) 5).setCellValue(stu.getZzmm());
+			row.createCell((short) 6).setCellValue(stu.getMz());
+			row.createCell((short) 7).setCellValue(stu.getJg());
+			row.createCell((short) 8).setCellValue(stu.getByyx());
+			row.createCell((short) 9).setCellValue(
+					null == stu.getBysj() ? "" : stu.getBysj().toString());
+			row.createCell((short) 10).setCellValue(stu.getXl());
+
+			row.createCell((short) 11).setCellValue(stu.getZy());
+			row.createCell((short) 12).setCellValue(stu.getGzdw());
+			row.createCell((short) 13).setCellValue(stu.getSzbm());
+			row.createCell((short) 14).setCellValue(stu.getCszy());
+			row.createCell((short) 15).setCellValue(stu.getZw());
+			row.createCell((short) 16).setCellValue(stu.getZc());
+			row.createCell((short) 17).setCellValue(stu.getLxdh());
+			row.createCell((short) 18).setCellValue(stu.getLxdz());
+			row.createCell((short) 19).setCellValue(stu.getCostItem());
 		}
 	}
 
@@ -146,7 +220,7 @@ public class ExportExcel extends HttpServlet {
 			row.createCell((short) 1).setCellValue(stu.getItemName());
 			row.createCell((short) 2).setCellValue(stu.getDayNum());
 			cell = row.createCell((short) 3);
-			cell.setCellValue(stu.getCost());
+			cell.setCellValue(stu.getCost() + " " + stu.getCostUnit());
 			row.createCell((short) 4).setCellValue(stu.getComment());
 			row.createCell((short) 5).setCellValue(stu.getComment2());
 		}
