@@ -154,7 +154,7 @@
 										<span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="javascript:;">导出 EXCEL</a></li>
+										<li><a href="javascript:;" onclick='exportExcel()'>导出 EXCEL</a></li>
 									</ul>
 								</div>
 							</div>
@@ -167,6 +167,8 @@
 						<thead>
 							<tr>
 								<th class="olx-table-th-center">序号</th>
+								<th>用户名</th>
+								<th>密码</th>
 								<th>姓名</th>
 								<th>身份证号</th>
 								<th>性别</th>
@@ -205,6 +207,8 @@
 							<tr>
 								<td><%=item.getId() %> <input type='checkbox'
 									value='<%=item.getId() %>'></td>
+								<td><%=item.getUserName() %></td>
+								<td><%=item.getUserPass() %></td>
 								<td><%=item.getRealName() %></td>
 								<td><%=item.getIdcard() %></td>
 								<td><%=item.getSex() %></td>
@@ -307,6 +311,10 @@
 				location.reload();
 			});
 		});
+
+		function exportExcel(){
+			console.log('导出Excel');
+		}
 	</script>
 </body>
 </html>
