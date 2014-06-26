@@ -73,7 +73,7 @@ body {
 		</div>
 		<button id="btn_submit" type="button" class="btn btn-primary">登陆</button>
 		<div class="form-group">
-			<label id="regFrm_ShowErr"></label>
+			<label id="regFrm_ShowErr">请使用360浏览器、火狐浏览器、谷歌浏览器或IE10以上版本。</label>
 		</div>
 	</form>
 	</section>

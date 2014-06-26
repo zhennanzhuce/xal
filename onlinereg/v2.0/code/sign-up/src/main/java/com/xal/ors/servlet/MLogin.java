@@ -12,6 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
+import com.xal.ors.biz.MgrService;
+import com.xal.ors.biz.impl.MgrServiceImpl;
+import com.xal.ors.model.Manager;
+import com.xal.ors.util.OptTemplate;
 
 public class MLogin extends HttpServlet {
 
@@ -31,17 +35,20 @@ public class MLogin extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		boolean login = login(request.getParameter("UserName"),
+		MgrService service = new MgrServiceImpl(new OptTemplate());
+		Manager login = service.login(request.getParameter("UserName"),
 				request.getParameter("UserPass"));
+
 		ResultMapper mapper = new ResultMapper();
-		mapper.setSuccess(login);
+		mapper.setSuccess(login != null);
 
 		Gson gson = new Gson();
 		String result = gson.toJson(mapper);
 
-		if (login) {
+		if (login != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("lv", 2);
+			session.setAttribute("UserName", login.getUserName());
 		}
 
 		out.write(result);
@@ -49,7 +56,7 @@ public class MLogin extends HttpServlet {
 		out.close();
 	}
 
-	private boolean login(String UserName, String UserPass) {
+	public boolean login(String UserName, String UserPass) {
 		return ("admin".equals(UserName) && "xal123".equals(UserPass));
 	}
 }
