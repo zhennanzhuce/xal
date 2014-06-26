@@ -102,4 +102,14 @@
 		<servlet-name>ExportExcel</servlet-name>
 		<url-pattern>/ExportExcel</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ChangePw</display-name>
+		<servlet-name>ChangePw</servlet-name>
+		<servlet-class>com.xal.ors.servlet.ChangePw</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangePw</servlet-name>
+		<url-pattern>/ChangePw</url-pattern>
+	</servlet-mapping>
 </web-app>

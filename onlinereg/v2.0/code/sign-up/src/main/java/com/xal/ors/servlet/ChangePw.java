@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.xal.ors.ResultMapper;
-import com.xal.ors.biz.UserService;
-import com.xal.ors.biz.impl.UserServiceImpl;
-import com.xal.ors.model.User;
+import com.xal.ors.biz.MgrService;
+import com.xal.ors.biz.impl.MgrServiceImpl;
+import com.xal.ors.model.Manager;
 import com.xal.ors.util.OptTemplate;
 
 public class ChangePw extends HttpServlet {
@@ -33,23 +33,19 @@ public class ChangePw extends HttpServlet {
 		response.setContentType("application/json");
 
 		HttpSession session = request.getSession();
-		Object id = session.getAttribute("id");
-		if (null == id) {
-			response.sendRedirect("index.jsp");
+		Object userName = session.getAttribute("UserName");
+		if (null == userName) {
+			response.sendRedirect("manage_login.jsp");
 			return;
 		}
 
-		User user = new User();
-		user.setId((Integer) id);
-		user.setUserName(request.getParameter("UserName"));
+		Manager user = new Manager();
+		user.setUserName(userName.toString());
 		user.setUserPass(request.getParameter("OldPass"));
 
-		UserService service = new UserServiceImpl(new OptTemplate());
-		boolean changePass = service.changePass(user,
-				request.getParameter("UserPass").toString());
-
-		ResultMapper mapper = new ResultMapper();
-		mapper.setSuccess(changePass);
+		MgrService service = new MgrServiceImpl(new OptTemplate());
+		ResultMapper mapper = service.changePw(user,
+				request.getParameter("UserPass"));
 
 		Gson gson = new Gson();
 		String result = gson.toJson(mapper);

@@ -146,11 +146,11 @@ body {
 					var msg = data.msg;
 					$('#logFrm_UserPass').focus();
 					$('#regFrm_ShowErr').css('display', 'block');
-					$('#regFrm_ShowErr').text(msg[0]);
+					$('#regFrm_ShowErr').text('修改密码失败!');
 					return;
 				}
 				alert('修改密码成功!');
-				location.href = 'changePw.jsp?ts='+ (new Date()).valueOf();
+				location.href = 'manage.jsp?ts='+ (new Date()).valueOf();
 			});
 		}
 		$('#btn_submit').click(subFrm);

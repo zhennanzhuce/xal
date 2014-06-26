@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%
+	request.setCharacterEncoding("utf-8");
+	//response.setCharacterEncoding("utf-8");
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+
 	Object lv = session.getAttribute("lv");
 	if(null == lv || 2 != (Integer)lv){
 		response.sendRedirect("manage_login.jsp");
