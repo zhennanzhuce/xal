@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	Object lv = session.getAttribute("lv");
+	if(null == lv || 2 != (Integer)lv){
+		response.sendRedirect("manage_login.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>后台登陆</title>
+<title>后台管理</title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
@@ -32,7 +39,7 @@
 body {
 	background-color: #F5F5F5;
 	padding-bottom: 40px;
-	padding-top: 40px;
+	padding-top: 100px;
 }
 
 #logFrm {
@@ -44,38 +51,19 @@ body {
 	max-width: 350px;
 	padding: 19px 29px 29px;
 }
-
-#alert_info {
-	max-width: 350px;
-	margin: 0 auto 20px;
-}
-
-#regFrm_ShowErr {
-	color: red;
-	font-size: 12px;
-	font-weight: normal;
-}
 </style>
 </head>
 <body>
 
 	<section class="container">
-	<form id="logFrm" role="form" onsubmit="return false;"
-		data-url="step0.do">
-		<h3>管理员登陆</h3>
-		<div class="form-group">
-			<input id="logFrm_UserName" name="UserName" type="text"
-				class="form-control" placeholder="用户名">
-		</div>
-		<div class="form-group">
-			<input id="logFrm_UserPass" name="UserPass" type="password"
-				class="form-control" placeholder="密码">
-		</div>
-		<button id="btn_submit" type="button" class="btn btn-primary">登陆</button>
-		<div class="form-group">
-			<label id="regFrm_ShowErr"></label>
-		</div>
-	</form>
+		<form id="logFrm" role="form" onsubmit="return false;">
+			<div class="form-group" style="text-align: center">
+				<a type="button" class="btn btn-warning" href="changePw.jsp"><h2>修改密码</h2></a>
+			</div>
+			<div class="form-group" style="text-align: center">
+				<a type="button" class="btn btn-primary" href="list.jsp?RealName=&Idcard="><h2>报名信息</h2></a>
+			</div>
+		</form>
 	</section>
 
 	<script type="text/javascript"
@@ -91,50 +79,6 @@ body {
 	<script>
 		$(function() {
 		});
-
-		function valiFrm() {
-			var frmObj = $('#logFrm').serializeObjectForm();
-			$('#regFrm_ShowErr').css('display', 'none');
-
-			if (!frmObj.UserName.trim().length) {
-				$('#regFrm_ShowErr').text('用户名不能为空');
-				$('#regFrm_ShowErr').css('display', 'block');
-				$('#logFrm_UserName').focus();
-				return;
-			}
-			if (!frmObj.UserPass.trim().length) {
-				$('#regFrm_ShowErr').text('密码不能为空');
-				$('#regFrm_ShowErr').css('display', 'block');
-				$('#logFrm_UserPass').focus();
-				return;
-			}
-			return true;
-		}
-		function subFrm() {
-			var result = valiFrm();
-			if (!result)
-				return;
-
-			$.ajax({
-				url : 'MLogin',
-				type : "GET",
-				dataType : "json",
-				data: {
-					UserName: $('#logFrm_UserName').val(),
-					UserPass: $('#logFrm_UserPass').val(),
-					ts: (new Date()).valueOf()
-				}
-			}).done(function(data) {
-				if (!data.success) {
-					$('#logFrm_UserPass').focus();
-					$('#regFrm_ShowErr').css('display', 'block');
-					$('#regFrm_ShowErr').text('用户名或密码输入错误，请重试！');
-					return;
-				}
-				location.href = 'manage.jsp';
-			});
-		}
-		$('#btn_submit').click(subFrm);
 	</script>
 </body>
 </html>

@@ -29,6 +29,12 @@ public class UserServiceImpl implements UserService {
 			return mapper;
 		}
 
+		if (!user.getUserName().matches("^[a-zA-Z][\\w]{3,15}$")) {
+			String[] msg = { "用户名只支持4-16位数字、字母（大小写）或下划线，首字母必须为字母。", "UserName" };
+			mapper.setMsg(msg);
+			return mapper;
+		}
+
 		user.setUserPass(user.getUserPass().trim());
 		if ("".equals(user.getUserPass())) {
 			String[] msg = { "密码不能为空", "UserPass" };

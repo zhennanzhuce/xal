@@ -26,6 +26,7 @@ public class UserTest extends TestCase {
 		UserService service = new UserServiceImpl(new OptTemplate());
 		User result = service.login("haha", "1234");
 		System.out.println(result);
-	}
 
+		System.out.println(("A111".matches("^[a-zA-Z][\\w]{3,15}$")));
+	}
 }

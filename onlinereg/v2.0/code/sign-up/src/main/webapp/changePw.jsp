@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	Object lv = session.getAttribute("lv");
+	if(null == lv || 2 != (Integer)lv){
+		response.sendRedirect("manage_login.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>后台登陆</title>
+<title>修改管理员密码</title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
@@ -62,16 +69,20 @@ body {
 	<section class="container">
 	<form id="logFrm" role="form" onsubmit="return false;"
 		data-url="step0.do">
-		<h3>管理员登陆</h3>
+		<h3>密码修改</h3>
 		<div class="form-group">
-			<input id="logFrm_UserName" name="UserName" type="text"
-				class="form-control" placeholder="用户名">
+			<input id="logFrm_OldPass" name="OldPass" type="password"
+				class="form-control" placeholder="原始密码">
 		</div>
 		<div class="form-group">
 			<input id="logFrm_UserPass" name="UserPass" type="password"
-				class="form-control" placeholder="密码">
+				class="form-control" placeholder="登陆密码">
 		</div>
-		<button id="btn_submit" type="button" class="btn btn-primary">登陆</button>
+		<div class="form-group">
+			<input id="logFrm_UserPass2" name="UserPass2" type="password"
+				class="form-control" placeholder="确认密码">
+		</div>
+		<button id="btn_submit" type="button" class="btn btn-primary">修改</button>
 		<div class="form-group">
 			<label id="regFrm_ShowErr"></label>
 		</div>
@@ -96,16 +107,22 @@ body {
 			var frmObj = $('#logFrm').serializeObjectForm();
 			$('#regFrm_ShowErr').css('display', 'none');
 
-			if (!frmObj.UserName.trim().length) {
-				$('#regFrm_ShowErr').text('用户名不能为空');
+			if (!frmObj.OldPass.trim().length) {
+				$('#regFrm_ShowErr').text('原始密码不能为空');
 				$('#regFrm_ShowErr').css('display', 'block');
-				$('#logFrm_UserName').focus();
+				$('#logFrm_OldPass').focus();
 				return;
 			}
 			if (!frmObj.UserPass.trim().length) {
-				$('#regFrm_ShowErr').text('密码不能为空');
+				$('#regFrm_ShowErr').text('登陆密码不能为空');
 				$('#regFrm_ShowErr').css('display', 'block');
 				$('#logFrm_UserPass').focus();
+				return;
+			}
+			if (frmObj.UserPass2 !== frmObj.UserPass) {
+				$('#regFrm_ShowErr').text('登陆密码与确认密码不一致。');
+				$('#regFrm_ShowErr').css('display', 'block');
+				$('#logFrm_UserPass2').focus();
 				return;
 			}
 			return true;
@@ -116,22 +133,24 @@ body {
 				return;
 
 			$.ajax({
-				url : 'MLogin',
-				type : "GET",
+				url : 'ChangePw',
+				type : "POST",
 				dataType : "json",
 				data: {
-					UserName: $('#logFrm_UserName').val(),
+					OldPass: $('#logFrm_OldPass').val(),
 					UserPass: $('#logFrm_UserPass').val(),
 					ts: (new Date()).valueOf()
 				}
 			}).done(function(data) {
 				if (!data.success) {
+					var msg = data.msg;
 					$('#logFrm_UserPass').focus();
 					$('#regFrm_ShowErr').css('display', 'block');
-					$('#regFrm_ShowErr').text('用户名或密码输入错误，请重试！');
+					$('#regFrm_ShowErr').text(msg[0]);
 					return;
 				}
-				location.href = 'manage.jsp';
+				alert('修改密码成功!');
+				location.href = 'changePw.jsp?ts='+ (new Date()).valueOf();
 			});
 		}
 		$('#btn_submit').click(subFrm);
